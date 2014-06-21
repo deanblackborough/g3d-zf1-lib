@@ -1,0 +1,14 @@
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.5em;
+    font-family: "Segoe UI", Helvetica, Arial, "Sans-Serif";
+    margin: 0;
+    padding: 0;
+}
+
+div#content {
+    width: 600px;
+    margin: 0 auto;
+}
