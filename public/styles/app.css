@@ -12,3 +12,8 @@ div#content {
     width: 600px;
     margin: 0 auto;
 }
+
+div#footer > p {
+    text-align: center;
+    font-size: 0.8em;
+}
