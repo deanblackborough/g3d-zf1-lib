@@ -7,5 +7,4 @@ The view and action helpers are all part of an exmaple Zend framework site, set
 up the site and you will be able to see examples of all the helpers, both 
 how to use them and what they generate.
 
-There will also be actions for the classes but in some cases were relevant the 
-example code may be commented out, one example being the thumbnail generator.
+There will also be actions for the classes but in some cases the example code may be commented out.
