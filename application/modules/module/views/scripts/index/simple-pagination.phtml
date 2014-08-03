@@ -1,18 +1,50 @@
-<h1>Zend helpers examples</h1>
-            
-<p>This sample site provides examples for all the action and view 
-helpers in the <a href="https://github.com/g3d-development/zend-helpers">https://github.com/g3d-development/zend-helpers</a> 
-project on GitHub</p>
+<?php /** @var $this G3d_View_Codehinting */ ?>
 
 <h2>Simple pagination</h2>
 
-<p>This view helper generates the next and previous links along with 
-'records n - m of o' text, the html is generated as an unordered list.</p>
+<p>This view helper generates the html for pagination, specifically the 
+next and previous links along with the two optiosn for the text between the 
+links.</p>
 
-<p>This view helper generates the html based purely on the supplied params, 
-it is not tied to a model, you will need to fetch the relevant vars and pass 
-them top the view.</p>
+<p>The text between the links can either be page based or items based, in both 
+cases all the text is configurable.</p>
 
-<p>Show code file</p>
+<h2>phpDoc for view method</h2>
 
-<p>Show examples, as html and then generated html as code</p>
+<pre>
+/**
+* Simple pagination view helper, generates next and previous links as well 
+* as the text between the links. There are two formats for the text between 
+* the links, either item based or page based. If you are using the item 
+* setting all the text can be changed from the defaults.
+* 
+* @param integer $per_page The number of results per page
+* @param integer $start The start result for the current page
+* @param integer $total The total number of results in the entire resultset
+* @param string $url URL to use for pagination links
+* @param integer $text_style Text style for the text that appears between 
+*                            the next and previous links, text can either 
+*                            be page based or item based, use the constants 
+*                            to set the style
+* @return G3d_View_Pagination 
+*/
+</pre>
+
+<h2>Examples</h2>
+
+<pre>echo $this->pagination(10, 11, 50, 
+'/module/index/simple-pagination');</pre>
+<?php echo $this->pagination(10, 11, 50, '/module/index/simple-pagination'); ?>
+
+<pre>echo $this->pagination(10, 11, 50, 
+'/module/index/simple-pagination', G3d_View_Pagination::STYLE_ITEMS);</pre>
+<?php echo $this->pagination(10, 11, 50, '/module/index/simple-pagination', G3d_View_Pagination::STYLE_ITEMS); ?>
+
+<pre>echo $this->pagination(10, 11, 50, 
+'/module/index/simple-pagination')->setLinksText('Forward', 'Back');</pre>
+<?php echo $this->pagination(10, 11, 50, '/module/index/simple-pagination')->setLinksText('Forward', 'Back'); ?>
+
+<pre>echo $this->pagination(10, 11, 50, 
+'/module/index/simple-pagination', G3d_View_Pagination::STYLE_ITEMS)->
+setItemsText('image', 'images');</pre>
+<?php echo $this->pagination(10, 11, 50, '/module/index/simple-pagination', G3d_View_Pagination::STYLE_ITEMS)->setItemsText('image', 'images'); ?>
