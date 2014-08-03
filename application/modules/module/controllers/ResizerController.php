@@ -1,11 +1,11 @@
 <?php
 /**
-* Base controller, this will contain examples for all the view helpers
+* Controller for image resizer examples
 * 
 * @author Dean Blackborougb <dean@g3d-development.com>
 * @copyright G3D Development Limited
 */
-class Module_IndexController extends Zend_Controller_Action
+class Module_ResizerController extends Zend_Controller_Action
 {
     /**
     * Zend layout object, required if we want to pass vars up to the layout 
@@ -30,14 +30,6 @@ class Module_IndexController extends Zend_Controller_Action
     * @return void
     */
     public function indexAction()
-    {
-        
-    }
-    
-    /**
-    * @return void
-    */
-    public function simplePaginationAction()
     {
         
     }

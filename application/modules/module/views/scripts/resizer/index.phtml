@@ -1,0 +1,80 @@
+<?php /** @var $this G3d_View_Codehinting */ ?>
+
+<h2>Image resizer</h2>
+
+<p>This group of classes allows a user to resize the supplied image, the 
+user is able to define the background canvas color, desired width and height, 
+quality/compression of applicable, image suffix and whether or not resized 
+image maintains the aspect ratio of the original.</p>
+
+<p>There is a jpeg, gif and png version of the resizer.</p>
+
+<h2>phpDoc for constructor</h2>
+
+<pre>
+/**
+* Class: abstract class G3d_Image_Resizer 
+*
+* Set options for resizer, only the options are set here to allow simple 
+* batch processing, developer can set initial options and then re-use the 
+* same object by calling loadImage and resize repeatedly
+* 
+* @param integer $width Width for the new image
+* @param integer $height Height for the new image
+* @param integer $quality Quality or compression level for new image, this 
+*                         depends on the desired format, the specific 
+*                         resizer weill document acceptable values
+* @param array $canvas_color Canvas background color, passed in as an rgb 
+*                            array
+* @param boolean $maintain_aspect Maintain aspect ratio of orginal image, 
+*                                 if set to TRUE padding will be added 
+*                                 around a best fit resampled image, 
+*                                 otherwise the image will be stretched to 
+*                                 fit the canvas
+* @return void|Exception Params are validated, an exception will be thrown 
+*                        if params are not valid
+*/
+public function __construct($width, $height, $quality, 
+array $canvas_color=array('r'=>255, 'g'=>255, 'b'=>255), 
+$maintain_aspect=TRUE) 
+</pre>
+
+<h2>Code examples</h2>
+
+<p>The example will create a 200 * 120 version of the source image, 
+maintaining the aspect ratio to create a best fit image and then position that 
+on a canvas which has a blue background. The new image will be created in 
+the same directory as the source image with -thumb added as a suffix.</p>
+
+<p>On a 900 * 600 image the resized image would have spacing of 10 pixels to 
+the left and right, a 180 *120 image would be placed onto blue 200 * 120 
+canvas.</p>
+
+<pre>
+try {
+    $resizer = new G3d_Image_Resizer_Jpeg(200, 120, 100, 
+    array('r'=>0, 'g'=>0, 'b'=>255));
+    $resizer->loadImage('test.jpg', 'images/testing/resizer/');
+    $resizer->resize('-thumb');
+} catch (Exception $e) {
+    $error = $e->getMessage();
+}
+</pre>
+
+<p>This example will stretch the source image to match the required 
+dimesions.</p>
+
+<pre>
+try {
+    $resizer = new G3d_Image_Resizer_Jpeg(200, 120, 100, 
+    array('r'=>0, 'g'=>0, 'b'=>255), FALSE);
+    $resizer->loadImage('test.jpg', 'images/testing/resizer/');
+    $resizer->resize('-thumb');
+} catch (Exception $e) {
+    $error = $e->getMessage();
+}
+</pre>
+
+<h2>Working examples</h2>
+
+<p>Coming soon(tm)</p>
