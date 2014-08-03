@@ -26,39 +26,40 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     }
     
     /**
-    * Set up namespaces for our library code, going to be serveral libraries, 
-    * base library code will reside in Dlayer, specific module library code goes 
-    * in a folder with the same name as the module
+    * Set up namespaces for our library code
     * 
     * @return void
     */
     function _initNamespaces() 
     {
-        
+        Zend_Loader_Autoloader::getInstance()->registerNamespace('G3d_');
     }
     
     /**
-    * Setup view helpers, view helpers exists only inside the Dlayer library, 
-    * shared between all modules, this appears to be a Zend issue at the moment 
-    * so just need to work around it
-    * 
+    * Setup view helpers, view helpers need to be added to the library, 
+    * they will then be accessible to all modules.
+    *
     * @return void
     */
-    function _initViewHelpers() 
+    function _initViewHelpers()
     {
-        
+        $renderer = Zend_Controller_Action_HelperBroker::getStaticHelper(
+        'viewRenderer');
+        $renderer->initView();
+        $renderer->view->addHelperPath('G3d/View/',
+                                       'G3d_View');
     }
-    
+
     /**
-    * Setup action helpers, exist only within the Dlayer library, shared between 
-    * all the modules, as per view helpers this appears to be a Zend issue so 
-    * just going to work with it
-    * 
+    * Setup action helpers, action helpers need to be added to the library, 
+    * they will then be accessible to all modules.
+    *
     * @return void
     */
-    public function _initActionHelpers() 
+    public function _initActionHelpers()
     {
-        
+        Zend_Controller_Action_HelperBroker::addPath('G3d/Action/',
+                                                     'G3d_Action');
     }
         
     /**

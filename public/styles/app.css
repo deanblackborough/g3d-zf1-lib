@@ -7,12 +7,35 @@ body {
     margin: 0;
     padding: 0;
 }
-
 div#content {
     width: 600px;
     margin: 0 auto;
 }
+div#content pre {
+    width: 578px;
+    padding: 10px;
+    float: left;
+    background-color: #f5f5f5;
+    border: 1px solid #000000;
+}
 
+/* Pagination styling */
+#content ul.pagination {
+    width: 600px;
+    float: left;
+    padding: 5px 0px 5px 0px;
+    list-style-type: none;
+    margin-bottom: 10px;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+    text-align: center;
+}
+#content ul.pagination li {
+    display: inline;
+    padding-right: 10px;
+}
+
+/* Site footer */
 div#footer > p {
     text-align: center;
     font-size: 0.8em;
