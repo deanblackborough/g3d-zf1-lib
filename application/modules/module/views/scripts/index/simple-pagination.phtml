@@ -17,6 +17,12 @@ cases all the text is configurable.</p>
 * as the text between the links. There are two formats for the text between 
 * the links, either item based or page based. If you are using the item 
 * setting all the text can be changed from the defaults.
+*
+* Four of the required params (not url), are checked for validioty, rather 
+* than throwing an exception which doesn't fit this helper will silently 
+* fail if the params are not of the correct type and generate a html 
+* comment, I'd suggest you modify the render() method to output your 
+* desired error
 * 
 * @param integer $per_page The number of results per page
 * @param integer $start The start result for the current page
@@ -48,3 +54,8 @@ cases all the text is configurable.</p>
 '/module/index/simple-pagination', G3d_View_Pagination::STYLE_ITEMS)->
 setItemsText('image', 'images');</pre>
 <?php echo $this->pagination(10, 11, 50, '/module/index/simple-pagination', G3d_View_Pagination::STYLE_ITEMS)->setItemsText('image', 'images'); ?>
+
+<pre>echo $this->pagination('a', 11, 50, 
+'/module/index/simple-pagination');</pre>
+<?php echo $this->escape($this->pagination('a', 11, 50, 
+'/module/index/simple-pagination')); ?>

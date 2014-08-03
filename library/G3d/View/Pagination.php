@@ -31,11 +31,19 @@ class G3d_View_Pagination extends Zend_View_Helper_Abstract
     private $item;
     private $items;
     
+    private $valid = TRUE;
+    
     /**
     * Simple pagination view helper, generates next and previous links as well 
     * as the text between the links. There are two formats for the text between 
     * the links, either item based or page based. If you are using the item 
     * setting all the text can be changed from the defaults.
+    * 
+    * Four of the required params (not url), are checked for validioty, rather 
+    * than throwing an exception which doesn't fit this helper will silently 
+    * fail if the params are not of the correct type and generate a html 
+    * comment, I'd suggest you modify the render() method to output your 
+    * desired error
     * 
     * @param integer $per_page The number of results per page
     * @param integer $start The start result for the current page
@@ -52,21 +60,35 @@ class G3d_View_Pagination extends Zend_View_Helper_Abstract
     {
         $this->resetParams();
         
-        /*
+        $this->validate($per_page, $start, $total, $text_style);
+        
+        $this->url = $this->view->escape($url);
+                
+        return $this;
+    }
+    
+    /**
+    * Validate the supplied params, if any are invalidate the view helper will 
+    * silently fail
+    * 
+    * @param integer $per_page
+    * @param integer $start
+    * @param integer $total
+    * @param integer $text_style
+    * @return void
+    */
+    private function validate($per_page, $start, $total, $text_style) 
+    {
         if(is_int($per_page) == FALSE || is_int($start) == FALSE || 
         is_int($total) == FALSE || 
         in_array($text_style, $this->text_styles) == FALSE) {
-            
-        }        
-        } */
-        
-        $this->per_page = intval($per_page);
-        $this->start = intval($start);
-        $this->total = intval($total);
-        $this->url = $this->view->escape($url);
-        $this->text_style = $text_style;
-                
-        return $this;
+            $this->valid = FALSE;
+        } else {
+            $this->per_page = intval($per_page);
+            $this->start = intval($start);
+            $this->total = intval($total);
+            $this->text_style = $text_style;
+        }
     }
     
     /**
@@ -244,6 +266,10 @@ class G3d_View_Pagination extends Zend_View_Helper_Abstract
     */
     public function __toString() 
     {
-        return $this->render();
+        if($this->valid == TRUE) {
+            return $this->render();
+        } else {
+            return '<!-- Error rendering pagination html -->';
+        }
     }
 } 
