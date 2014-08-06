@@ -1,10 +1,25 @@
-zend-helpers
+Zend Helpers and Utility classes
 ============
 
-Zend framework action and view helpers and other helpful classes.
+This repository contains Zend action helpers, view helpers and utility classes 
+that may be of use to other developers.
 
-The view and action helpers are all part of an exmaple Zend framework site, set 
-up the site and you will be able to see examples of all the helpers, both 
-how to use them and what they generate.
+The repository is set up as a sample Zend site, to see the code in action 
+export the repository and set up sample site.
 
-There will also be actions for the classes.
+This sample site requires the Zend framework, at the time of writing 1.12.
+
+## View helpers
+
+- Simple pagination: Generates next, previous, m-n of o html based on the 
+params passed into the view helper.
+
+## Utility classes
+
+- Image resizer: Reize the supplied image allowing the user to define the 
+background canvas color, desired size, quality/compression, image suffix 
+and whether or not resized image maintains the aspect ratio of the original.
+
+## [License](https://github.com/g3d-development/zend-helpers/blob/master/LICENSE.md)
+
+Released under the [MIT](http://opensource.org/licenses/mit-license.html) license.
