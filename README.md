@@ -19,6 +19,7 @@ params passed into the view helper.
 - Image resizer: Resize the supplied image allowing the user to define the 
 background canvas color, desired size, quality/compression, image suffix 
 and whether or not resized image maintains the aspect ratio of the original.
+- Image cropper: Crop the supplied image.
 
 ## [License](https://github.com/g3d-development/zend-helpers/blob/master/LICENSE.md)
 

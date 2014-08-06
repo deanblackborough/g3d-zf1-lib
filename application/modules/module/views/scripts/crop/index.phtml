@@ -38,7 +38,7 @@ added as a suffix.</p>
 
 <pre>
 try {
-    $cropper = new G3d_Image_Crop_Jpeg(0, 0, 300, 300, 100);
+    $cropper = new G3d_Image_Crop_Jpeg(100, 100, 300, 300, 100);
     $cropper->loadImage('test.jpg', 'images/testing/crop/');
     $cropper->crop('-cropped');
 } catch (Exception $e) {
