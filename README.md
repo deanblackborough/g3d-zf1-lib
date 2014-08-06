@@ -5,7 +5,7 @@ This repository contains Zend action helpers, view helpers and utility classes
 that may be of use to other developers.
 
 The repository is set up as a sample Zend site, to see the code in action 
-export the repository and set up sample site.
+export the repository and set up the sample site.
 
 This sample site requires the Zend framework, at the time of writing 1.12.
 
@@ -16,7 +16,7 @@ params passed into the view helper.
 
 ## Utility classes
 
-- Image resizer: Reize the supplied image allowing the user to define the 
+- Image resizer: Resize the supplied image allowing the user to define the 
 background canvas color, desired size, quality/compression, image suffix 
 and whether or not resized image maintains the aspect ratio of the original.
 
