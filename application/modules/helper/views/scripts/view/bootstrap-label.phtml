@@ -1,6 +1,19 @@
 <?php /** @var G3d_View_Codehinting */ $this; ?>
 
-<div class-"row">
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
 	<div class="col-md-12 col-xs-12">
 		<h2>Bootstrap label</h2>
 
@@ -11,7 +24,7 @@
 			
 		<h3>Class comment <small>PHPDoc for class</small></h3>
 		
-		<pre>
+		<pre class="brush: php">
 		/**
 		* Generates the bootstrap label html. The label text and modifier class 
 		* (primary, default...) can be defined
@@ -19,7 +32,7 @@
 		* If there are any issues generating the HTML due to incorrect params the 
 		* view helper will generate a HTML comment containing the error reason
 		* 
-		* @author Dean Blackborough <dean@g3d-development.com>
+		* @author Dean Blackborough dean@g3d-development.com
 		* @copyright G3D Development Limited
 		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
 		*/
@@ -28,17 +41,19 @@
 		<h3>Public methods <small>Comments and method signatures for public 
 			methods</small></h3>
 			
-		<pre>
+		<pre class="brush: php">
 		/**
 		* Set options
 		* 
 		* @param string $label_text Text for the label
-		* @param string $modifier_class Bootstrap modifier class, defaults to 
-		* 	'default'
+		* @param string $modifier_class Bootstrap modifier class, defaults to 'default'
 		* @return G3d_View_BootstrapLabel
 		*/
 		public function bootstrapLabel($label_text, $modifier_class='default') 
 		</pre>
+		
+		<p><a href="/helper/view/bootstrap-label-class/" 
+		class="btn btn-default">View entire class</a></p>
 
 		<h3>Examples <small>Several examples to show use</small></h3>
 		
