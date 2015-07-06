@@ -1,0 +1,62 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<div class-"row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Bootstrap label</h2>
+
+		<p>This view helper generates the HTML for a bootstrap label, the 
+			label text and bootstrap modifier class can be defined, the 
+			modifier class will be validated by the view helper, on error a 
+			HTML comment is output detailing the encountered error.</p>
+			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre>
+		/**
+		* Generates the bootstrap label html. The label text and modifier class 
+		* (primary, default...) can be defined
+		* 
+		* If there are any issues generating the HTML due to incorrect params the 
+		* view helper will generate a HTML comment containing the error reason
+		* 
+		* @author Dean Blackborough <dean@g3d-development.com>
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre>
+		/**
+		* Set options
+		* 
+		* @param string $label_text Text for the label
+		* @param string $modifier_class Bootstrap modifier class, defaults to 
+		* 	'default'
+		* @return G3d_View_BootstrapLabel
+		*/
+		public function bootstrapLabel($label_text, $modifier_class='default') 
+		</pre>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<h4>Default <small>Default value for modifier class</small></h4>
+
+		<pre>echo $this->bootstrapLabel('Bootstrap label');</pre>
+		<?php echo $this->bootstrapLabel('Bootstrap label'); ?>
+		
+		<h4>Success <small>Success class used for modfier class</small></h4>
+
+		<pre>echo $this->bootstrapLabel('Bootstrap label', 'success');</pre>
+		<?php echo $this->bootstrapLabel('Bootstrap label', 'success'); ?>
+		
+		<h4>Error <small>Invalid modifier class supplied</small></h4>
+
+		<pre>echo $this->bootstrapLabel('Bootstrap label', 'successdd');</pre>
+		<?php echo $this->escape(
+			$this->bootstrapLabel('Bootstrap label', 'successdd')); ?>
+
+	</div>
+</div>
