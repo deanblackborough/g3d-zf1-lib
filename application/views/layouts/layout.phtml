@@ -1,32 +1,47 @@
-<?php echo $this->doctype(Zend_View_Helper_Doctype::XHTML1_STRICT) . "\r\n"; ?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Zend helpers examples</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="<?php echo $this->baseUrl('styles/app.css'); ?>" rel="stylesheet" media="" type="text/css" />
-    </head>
-    <body>
-        <div id="content">
-            <h1>Zend helpers examples</h1>
-            
-            <p>This sample site provides examples for all the action and view 
-            helpers in the <a href="https://github.com/g3d-development/zend-helpers">https://github.com/g3d-development/zend-helpers</a> 
-            project on GitHub.</p>
-            
-            <p>The sample site will also include examples for the utility 
-            classes where appropriate.</p>
-            
-            <p>This site requires Zend Framework, at the time of writing 
-            version 1.12.</p>
-
-            <?php echo $this->layout()->content; ?>
-            
-            <p><a href="/">Return to index</a></p>
-            
-            <div id="footer">
-            <p>Version v0.05 - Copyright &copy; G3D Development Limited 
-            2010-<?php echo date('Y'); ?></p>
-            </div>
-        </div>
-    </body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>G3D Development - ZF1 Library</title>
+		<meta name="description" content="A small part of the G3D Development Limited ZF1 library, action helpers, view helpers and library code.">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-xs-12">
+					<div class="jumbotron">
+						<h1>ZF1 Library <small>G3D Development's ZF1 
+							library</small></h1>
+							
+						<p>A small part of the G3D Development Limited ZF1 
+							library, action helpers, view helpers and 
+							library code.</p>
+							
+						<p>This sample site provides examples for most of the 
+							action helper, view helpers and utility classes 
+							in the repo on <a href="https://github.com/deanblackborough/g3d-zf1-lib">GitHub.</a></p>
+							
+						<p><small>The provided code requires the Zend 
+							Framework, all code tested against version 1.12.
+							</small></p>
+					</div>
+				</div>
+			</div>
+			
+			<?php echo $this->layout()->content; ?>
+			
+			<div class="row">
+				<div class="col-md-12 col-xs-12">
+					<p><a href="/">Return to root</a></p>
+				
+					<p class="text-center"><small>v0.05 - 
+					<a href="https://github.com/deanblackborough">Dean Blackborough</a></small></p>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
