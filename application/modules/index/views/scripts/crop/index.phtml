@@ -1,51 +1,56 @@
-<?php /** @var $this G3d_View_Codehinting */ ?>
+<?php /** @var G3d_View_Codehinting */ $this; ?>
 
-<h2>Image cropper</h2>
+<div class="row">
+	<div class="col-md-12 col-xs-12">
 
-<p>This group of classes allows a user to crop the supplied image, the 
-user defined the selection rectangle and position as well as the 
-quality/compression if applicable for the cropped image.</p>
+		<h2>Image cropper</h2>
 
-<p>There is a jpeg, gif and png version of the cropper.</p>
+		<p>This group of classes allows a user to crop the supplied image, the 
+		user defined the selection rectangle and position as well as the 
+		quality/compression if applicable for the cropped image.</p>
 
-<h2>phpDoc for constructor</h2>
+		<p>There is a jpeg, gif and png version of the cropper.</p>
 
-<pre>
-/**
-* Class: abstract class G3d_Image_Crop 
+		<h2>phpDoc for constructor</h2>
 
-* Set the crop options, set here to allow batch processing by repeatedly 
-* calling the loadImage and crop methods
-* 
-* @param integer $x_position X position of crop selection rectangle
-* @param integer $y_position Y position of crop selection rectangle
-* @param integer $width Width of crop selection rectangle
-* @param integer $height Height of crop selected rectangle
-* @param integer $quality Quality or compression level for new image if 
-*                         required by format
-* @return void|Exception
-*/
-public function __construct($x_position, $y_position, $width, $height, 
-$quality) 
-</pre>
+		<pre>
+		/**
+		* Class: abstract class G3d_Image_Crop 
 
-<h2>Code examples</h2>
+		* Set the crop options, set here to allow batch processing by repeatedly 
+		* calling the loadImage and crop methods
+		* 
+		* @param integer $x_position X position of crop selection rectangle
+		* @param integer $y_position Y position of crop selection rectangle
+		* @param integer $width Width of crop selection rectangle
+		* @param integer $height Height of crop selected rectangle
+		* @param integer $quality Quality or compression level for new image if 
+		*                         required by format
+		* @return void|Exception
+		*/
+		public function __construct($x_position, $y_position, $width, $height, 
+		$quality) 
+		</pre>
 
-<p>The example will create a 300 * 300 cropper version of the source image, 
-the selection rectangle is positioned 100 pixels in and down. The cropped image 
-will be created in the same directory as the source image with -cropped
-added as a suffix.</p>
+		<h2>Code examples</h2>
 
-<pre>
-try {
-    $cropper = new G3d_Image_Crop_Jpeg(100, 100, 300, 300, 100);
-    $cropper->loadImage('test.jpg', 'images/testing/crop/');
-    $cropper->crop('-cropped');
-} catch (Exception $e) {
-    $error = $e->getMessage();
-}
-</pre>
+		<p>The example will create a 300 * 300 cropper version of the source image, 
+		the selection rectangle is positioned 100 pixels in and down. The cropped image 
+		will be created in the same directory as the source image with -cropped
+		added as a suffix.</p>
 
-<h2>Working examples</h2>
+		<pre>
+		try {
+			$cropper = new G3d_Image_Crop_Jpeg(100, 100, 300, 300, 100);
+			$cropper->loadImage('test.jpg', 'images/testing/crop/');
+			$cropper->crop('-cropped');
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		</pre>
 
-<p>Coming soon(tm)</p>
+		<h2>Working examples</h2>
+
+		<p>Coming soon(tm)</p>
+	</div>
+</div>
