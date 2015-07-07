@@ -87,5 +87,16 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* @param string $icon The name of the glyphicon
 	* @return G3d_View_BootstrapGlyphicon
 	*/
-	public function bootstrapGlyphicon($icon) { }
+	public function bootstrapGlyphicon($icon) { } 
+	
+	/**
+	* Set the options
+	* 
+	* @param array $menu_items Array of menu items, each item in the array 
+	* 	should be an array with three fields, name, url and title
+	* @param string $active_url The active URL, active class will be attached 
+	* 	to the corresponding menu item
+	* @return G3d_View_BootstrapNav
+	*/
+	public function bootstrapNav(array $menu_items, $active_url) { }
 }

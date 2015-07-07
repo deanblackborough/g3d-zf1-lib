@@ -1,0 +1,45 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Bootstrap nav</h2>
+		
+		<?php 
+		$menu_items = array(
+			array(
+				'name'=>'Home', 
+				'title'=>'Home page', 
+				'url'=>'/home/', 
+			),
+			array(
+				'name'=>'Profile', 
+				'title'=>'Profile page', 
+				'url'=>'#', 
+			),
+			array(
+				'name'=>'Messages', 
+				'title'=>'View your messages', 
+				'url'=>'#', 
+			),
+			array(
+				'name'=>'Disabled', 
+				'title'=>'Disabled link', 
+				'url'=>'#', 
+				'disabled'=>TRUE
+			),
+		);
+		?>
+		
+		<h2>Pills</h2>
+		<?php echo $this->bootstrapNav($menu_items, '/home/')->pills(); ?>
+		
+		<h2>Tabs</h2>
+		<?php echo $this->bootstrapNav($menu_items, '/home/')->tabs(); ?>
+		
+		<h2>Pills</h2>
+		<?php echo $this->bootstrapNav($menu_items, '/home/')->pills()->justified(); ?>
+		
+		<h2>Tabs</h2>
+		<?php echo $this->bootstrapNav($menu_items, '/home/')->tabs()->justified(); ?>
+	</div>
+</div>
