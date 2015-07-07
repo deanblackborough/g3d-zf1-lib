@@ -182,14 +182,47 @@ class G3d_View_BootstrapNav extends Zend_View_Helper_Abstract
 						$class .= 'disabled ';
 					}
 					
+					if(isset($item['children']) == TRUE) {
+						$class .= 'dropdown ';
+					}
+					
 					$html .= '<li role="presentaion"'; 
 					if($class != NULL) {
 						$html .= ' class="' . trim($class) . '"';
 					}
 					$html .= '>';
-					$html .= '<a href="' . $this->view->escape($item['url']) . 
-						'" title="' . $this->view->escape($item['title']) . 
-						'">' . $this->view->escape($item['name']) . '</a>';
+					
+					if(isset($item['children']) == FALSE) {
+						$html .= '<a href="' . 
+						$this->view->escape($item['url']) . '" title="' . 
+						$this->view->escape($item['title']) . '">' . 
+						$this->view->escape($item['name']) . '</a>';
+					} else {
+						$html .=  '<a class="dropdown-toggle" 
+							data-toggle="dropdown" href="#" role="button" 
+							aria-haspopup="true" aria-expanded="false">' . 
+							$this->view->escape($item['name']) . 
+							' <span class="caret"></span></a>';
+					}
+						
+					if(array_key_exists('children', $item) == TRUE) {
+						$html .= '<ul class="dropdown-menu"">';
+						
+						foreach($item['children'] as $n=>$child) {
+							if($this->validateMenuItemFields($child, 
+								$n) == TRUE) {
+								
+								$html .= '<li><a  href="' . 
+									$this->view->escape($child['url']) . 
+									'" title="' . 
+									$this->view->escape($child['title']) . 
+									'">' . $this->view->escape($child['name']) . 
+									'</a>'; 
+							}
+						
+						}
+						$html .= '</ul>';
+					}
 						
 					$html .= '</li>';					
 				}
