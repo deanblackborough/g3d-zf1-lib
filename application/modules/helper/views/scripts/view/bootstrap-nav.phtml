@@ -1,8 +1,152 @@
 <?php /** @var G3d_View_Codehinting */ $this; ?>
 
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
 <div class="row">
 	<div class="col-md-12 col-xs-12">
 		<h2>Bootstrap nav</h2>
+
+		<p>This view helper generates the HTML for a Bootstrap nav 
+			component, it supports child menu items and the menu items can 
+			be renedered as tabs, pills, stacked pills and justified. The 
+			menu item array is validated by the view helper, on error a 
+			HTML comment is output detailing the encountered error.</p>
+			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Generates the HTML for a bootstrap nav components, nav bar typed can be 
+		* defined, tabs, pills or stacked and supports one level of child menu items
+		* 
+		* If there are any issues generating the HTML due to incorrect params the 
+		* view helper will generate a HTML comment containing the error reason
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Set the options
+		* 
+		* @param array $menu_items Array of menu items, each item in the array 
+		* 	should be an array with three fields, name, url and title. Optionally 
+		* 	disabled and child fields can be defined in the mneu array
+		* @param string $active_url The active URL, active class will be attached 
+		* 	to the corresponding menu item
+		* @return G3d_View_BootstrapNav
+		*/
+		public function bootstrapNav(array $menu_items, $active_url)
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Render the menu using pills
+		* 
+		* @return G3d_View_BootstrapNav
+		*/
+		public function pills()
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Render the menu using tabs
+		* 
+		* @return G3d_View_BootstrapNav
+		*/
+		public function tabs() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Render the menu using stacked pills
+		* 
+		* @return G3d_View_BootstrapNav
+		*/
+		public function pillsStacked() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Make the menu items equal width
+		* 
+		* @return G3d_View_BootstrapNav
+		*/
+		public function justified() 
+		</pre>
+		
+		<hr />
+		
+		<p><a href="/helper/view/bootstrap-nav-class/" 
+		class="btn btn-default">View entire class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Data array for examples 
+		*/
+		$menu_items = array(
+			array(
+				'name'=>'Home', 
+				'title'=>'Home page', 
+				'url'=>'/home/', 
+			),
+			array(
+				'name'=>'Profile', 
+				'title'=>'Profile page', 
+				'url'=>'#', 
+				'children'=>array(
+					array(
+						'name'=>'Child 1', 
+						'title'=>'Child page 1', 
+						'url'=>'#'
+					),
+					array(
+						'name'=>'Child 2', 
+						'title'=>'Child page 2', 
+						'url'=>'#'
+					)
+				)
+			),
+			array(
+				'name'=>'Messages', 
+				'title'=>'View your messages', 
+				'url'=>'#', 
+			),
+			array(
+				'name'=>'Disabled', 
+				'title'=>'Disabled link', 
+				'url'=>'#', 
+				'disabled'=>TRUE
+			),
+		);
+		</pre>
 		
 		<?php 
 		$menu_items = array(
@@ -42,19 +186,23 @@
 		);
 		?>
 		
-		<h2>Pills</h2>
+		<h4>Pills <small>Render a pill based menu</small></h4>
+
+		<pre>echo $this->bootstrapNav($menu_items, '/home/')->pills();</pre>
 		<?php echo $this->bootstrapNav($menu_items, '/home/')->pills(); ?>
 		
-		<h2>Pills</h2>
-		<?php echo $this->bootstrapNav($menu_items, '/home/')->pillsStacked(); ?>
+		<hr />
 		
-		<h2>Tabs</h2>
+		<h4>Tabs <small>Render a tabs based menu</small></h4>
+
+		<pre>echo $this->bootstrapNav($menu_items, '/home/')->tabs();</pre>
 		<?php echo $this->bootstrapNav($menu_items, '/home/')->tabs(); ?>
 		
-		<h2>Pills</h2>
-		<?php echo $this->bootstrapNav($menu_items, '/home/')->pills()->justified(); ?>
+		<hr />
 		
-		<h2>Tabs</h2>
+		<h4>Justified tabs <small>Render a justified tabs based menu</small></h4>
+
+		<pre>echo $this->bootstrapNav($menu_items, '/home/')->tabs()->justified();</pre>
 		<?php echo $this->bootstrapNav($menu_items, '/home/')->tabs()->justified(); ?>
 	</div>
 </div>
