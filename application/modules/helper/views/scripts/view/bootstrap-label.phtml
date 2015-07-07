@@ -54,6 +54,19 @@
 		
 		<hr />
 		
+		<pre class="brush: php">
+		/**
+		* Include a glyphicon, either before or after the label
+		* 
+		* @param string $icon Glyphicon
+		* @param string $position Position, either before or after label text
+		* @return G3d_View_BootstrapLabel
+		*/
+		public function glyphicon($icon, $position='before') 
+		</pre>
+		
+		<hr />
+		
 		<p><a href="/helper/view/bootstrap-label-class/" 
 		class="btn btn-default">View entire class</a></p>
 
@@ -78,6 +91,22 @@
 		<pre>echo $this->bootstrapLabel('Bootstrap label', 'successdd');</pre>
 		<?php echo $this->escape(
 			$this->bootstrapLabel('Bootstrap label', 'successdd')); ?>
+			
+		<hr />
+			
+		<h4>Glyphicon <small>With glyphicon after text</small></h4>
+
+		<pre>echo $this->bootstrapLabel('Bootstrap label', 'primary')->glyphicon('hdd', 'after');</pre>
+		<?php echo $this->bootstrapLabel('Bootstrap label', 'primary')->glyphicon('hdd', 'after'); ?>
+		
+		<hr />
+		
+		<h4>Error <small>Incorrect glyphicon position</small></h4>
+
+		<pre>echo $this->bootstrapLabel('Bootstrap label', 'primary')->glyphicon('hdd', 'below');</pre>
+		<?php echo $this->escape(
+			$this->bootstrapLabel('Bootstrap label', 'primary')->
+				glyphicon('hdd', 'below')); ?>
 
 	</div>
 </div>

@@ -20,13 +20,18 @@ class G3d_View_BootstrapLabel extends Zend_View_Helper_Abstract
 	public $view;
 	
 	private $modifier_class; 
-	private $label_text;	
+	private $label_text;
+	
+	private $attach_glyph;
+	private $icon;
+	private $position;
 	
 	private $errors;
 	private $render;
 	
 	private $modifier_classes = array('default', 'primary', 'success', 
 		'info', 'warning', 'danger');
+	private $positions = array('before', 'after');
 	
 	/**
 	* Set options
@@ -63,6 +68,10 @@ class G3d_View_BootstrapLabel extends Zend_View_Helper_Abstract
 		$this->modifier_class = 'default';
 		$this->errors = array();
 		$this->render = FALSE;
+		
+		$this->attach_glyph = FALSE;
+		$this->icon = '';
+		$this->position = 'before';
 	}
 	
 	/**
@@ -93,13 +102,63 @@ class G3d_View_BootstrapLabel extends Zend_View_Helper_Abstract
 	{
 		if($this->render == TRUE) {
 			$html = '<span class="label label-' . 
-				$this->view->escape($this->modifier_class) . '">' . 
-				$this->view->escape($this->label_text) . '</span>';
+				$this->view->escape($this->modifier_class) . '">';
+				
+			if($this->attach_glyph == TRUE && $this->position == 'before') {
+				$html .= $this->view->bootstrapGlyphicon($this->icon) . ' ';
+			}
+			
+			$html .= $this->view->escape($this->label_text);
+			
+			if($this->attach_glyph == TRUE && $this->position == 'after') {
+				$html .= ' ' . $this->view->bootstrapGlyphicon($this->icon);	
+			}
+				
+			$html .= '</span>';
 		} else {
 			$html = $this->errors();
 		}
 				
 		return $html;
+	}
+	
+	/**
+	* Include a glyphicon, either before or after the label
+	* 
+	* @param string $icon Glyphicon
+	* @param string $position Position, either before or after label text
+	* @return G3d_View_BootstrapLabel
+	*/
+	public function glyphicon($icon, $position='before') 
+	{
+		$this->render = $this->validatePosition(trim($position));
+		
+		if($this->render == TRUE) {
+			$this->icon = trim($icon);
+			$this->position = trim($position);
+			$this->attach_glyph = TRUE;
+		}
+		
+		return $this;
+	}
+	
+	/**
+	* Validate the supplied position value
+	* 
+	* @param string $position
+	* @return boolean
+	*/
+	private function validatePosition($position) 
+	{
+		if(in_array($position, $this->positions) == TRUE) {
+			return TRUE;
+		} else {
+			$this->errors[] = 'Supplied position (' . $position . 
+				') invalid, needs to be one of the following (' . 
+				implode(', ', $this->positions) . ')';			
+			
+			return FALSE;
+		}
 	}
 	
 	/**
