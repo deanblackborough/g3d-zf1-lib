@@ -1,0 +1,95 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Bootstrap label <small>The entire class</small></h2>
+		
+		<pre class="brush: php">
+		/**
+		* Generates the bootstrap glyphicon HTML, generates a span with the 
+		* selected glyphicon class set
+		* 
+		* No validation in this view helper, it just accepts the provided value, people 
+		* may be using different sets
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		class G3d_View_BootstrapGlyphicon extends Zend_View_Helper_Abstract 
+		{
+			/**
+			* Override the hinting to allow code completion for our view helpers
+			*
+			* @var G3d_View_Codehinting
+			*/
+			public $view;
+			
+			private $icon;
+			
+			/**
+			* Set options
+			* 
+			* @param string $icon The name of the glyphicon
+			* @return G3d_View_BootstrapGlyphicon
+			*/
+			public function bootstrapGlyphicon($icon) 
+			{
+				$this->resetParams();
+				
+				$this->icon = trim($icon);
+				
+				return $this;
+			}
+			
+			/**
+			* Reset any internal params, interal properties need to be reset so that 
+			* if the view helper is called within the view script each request is 
+			* unique
+			* 
+			* @return void
+			*/
+			private function resetParams() 
+			{
+				$this->icon = '';
+			}
+			
+			/**
+			* Generate the label HTML
+			* 
+			* @return string 
+			*/
+			private function render() 
+			{
+				return '<span class="glyphicon glyphicon-' . $this->icon . 
+					'" aria-hidden="true"></span>';
+			}
+			
+			/**
+			* Define __toString to allow the result to be returned when echo 
+			* and print are called on the object, simply calls the private render 
+			* method
+			* 
+			* @return string The generated html
+			*/
+			public function __toString() 
+			{
+				return $this->render();
+			}
+		}
+		</pre>
+	</div>
+</div>
