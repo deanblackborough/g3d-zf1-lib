@@ -17,7 +17,7 @@
 	<div class="col-md-12 col-xs-12">
 		<h2>Bootstrap label</h2>
 
-		<p>This view helper generates the HTML for a bootstrap label, the 
+		<p>This view helper generates the HTML for a Bootstrap label, the 
 			label text and bootstrap modifier class can be defined, the 
 			modifier class will be validated by the view helper, on error a 
 			HTML comment is output detailing the encountered error.</p>
@@ -52,6 +52,8 @@
 		public function bootstrapLabel($label_text, $modifier_class='default') 
 		</pre>
 		
+		<hr />
+		
 		<p><a href="/helper/view/bootstrap-label-class/" 
 		class="btn btn-default">View entire class</a></p>
 
@@ -62,10 +64,14 @@
 		<pre>echo $this->bootstrapLabel('Bootstrap label');</pre>
 		<?php echo $this->bootstrapLabel('Bootstrap label'); ?>
 		
+		<hr />
+		
 		<h4>Success <small>Success class used for modfier class</small></h4>
 
 		<pre>echo $this->bootstrapLabel('Bootstrap label', 'success');</pre>
 		<?php echo $this->bootstrapLabel('Bootstrap label', 'success'); ?>
+		
+		<hr />
 		
 		<h4>Error <small>Invalid modifier class supplied</small></h4>
 

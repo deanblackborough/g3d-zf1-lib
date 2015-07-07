@@ -32,4 +32,6 @@ class Helper_ViewController extends Zend_Controller_Action
 	*/
 	public function bootstrapLabelAction() { }
 	public function bootstrapLabelClassAction() { }
+	public function bootstrapGlyphiconAction() { }
+	public function bootstrapGlyphiconClassAction() { }
 }

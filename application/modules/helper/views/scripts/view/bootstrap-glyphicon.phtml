@@ -1,0 +1,78 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Bootstrap glyphicon</h2>
+
+		<p>This view helper generates the HTML for a Bootstrap glyphicon, 
+			a span tag with the relevant clas set.</p>
+			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Generates the bootstrap glyphicon HTML, generates a span with the 
+		* selected glyphicon class set
+		* 
+		* No validation in this view helper, it just accepts the provided value, people 
+		* may be using different sets
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Set options
+		* 
+		* @param string $icon The name of the glyphicon
+		* @return G3d_View_BootstrapGlyphicon
+		*/
+		public function bootstrapGlyphicon($icon) 
+		</pre>
+		
+		<hr />
+		
+		<p><a href="/helper/view/bootstrap-label-class/" 
+		class="btn btn-default">View entire class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<h4>Plus <small>A plus sign</small></h4>
+
+		<pre>echo $this->bootstrapGlyphicon('plus');</pre>
+		<?php echo $this->bootstrapGlyphicon('plus'); ?>
+		
+		<hr />
+		
+		<h4>Zoom out <small>A zoom out icon</small></h4>
+
+		<pre>echo $this->bootstrapGlyphicon('zoom-out');</pre>
+		<?php echo $this->bootstrapGlyphicon('zoom-out'); ?>
+		
+		<hr />
+		
+		<h4>GBP <small>UK currency symbol</small></h4>
+
+		<pre>echo $this->bootstrapGlyphicon('gbp');</pre>
+		<?php echo $this->bootstrapGlyphicon('gbp'); ?>
+	</div>
+</div>

@@ -79,5 +79,13 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* 	'default'
 	* @return G3d_View_BootstrapLabel
 	*/
-	public function bootstrapLabel($label_text, $modifier_class='default') { }
+	public function bootstrapLabel($label_text, $modifier_class='default') { } 
+	
+	/**
+	* Set options
+	* 
+	* @param string $icon The name of the glyphicon
+	* @return G3d_View_BootstrapGlyphicon
+	*/
+	public function bootstrapGlyphicon($icon) { }
 }
