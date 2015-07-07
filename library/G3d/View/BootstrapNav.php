@@ -109,6 +109,19 @@ class G3d_View_BootstrapNav extends Zend_View_Helper_Abstract
 	}
 	
 	/**
+	* Render the menu using stacked pills
+	* 
+	* @return G3d_View_BootstrapNav
+	*/
+	public function pillsStacked() 
+	{
+		$this->classes[] = 'nav-pills';
+		$this->classes[] = 'nav-stacked';
+		
+		return $this;
+	}
+	
+	/**
 	* Make the menu items equal width
 	* 
 	* @return G3d_View_BootstrapNav
