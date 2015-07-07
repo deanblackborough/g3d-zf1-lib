@@ -40,11 +40,11 @@ class G3d_View_BootstrapLabel extends Zend_View_Helper_Abstract
 	{
 		$this->resetParams();
 		
-		$this->render = $this->validate($modifier_class);
+		$this->render = $this->validate(trim($modifier_class));
 		
 		if($this->render == TRUE) {
-			$this->label_text = $label_text;
-			$this->modifier_class = $modifier_class;
+			$this->label_text = trim($label_text);
+			$this->modifier_class = trim($modifier_class);
 		}
 		
 		return $this;
