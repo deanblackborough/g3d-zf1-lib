@@ -8,7 +8,7 @@ defined('APPLICATION_PATH')
 defined('APPLICATION_ENV')
 	|| define('APPLICATION_ENV', 
 	(getenv('APPLICATION_ENV') ? 
-	getenv('APPLICATION_ENV') : 'production'));
+	getenv('APPLICATION_ENV') : 'development'));
 	
 // Add Zend to include path when in production
 $include = NULL;
