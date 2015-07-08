@@ -26,6 +26,10 @@ and whether or not resized image maintains the aspect ratio of the original.
 - Image cropper: Crop the supplied image, user define cropping selection 
 and its position from the top left corner of the source image.
 
+## Sample site
+
+- Hosted at http://zf1.deanblackborough.com/
+
 ## [License](https://github.com/g3d-development/zend-helpers/blob/master/LICENSE.md)
 
 Released under the [MIT](http://opensource.org/licenses/mit-license.html) license.
