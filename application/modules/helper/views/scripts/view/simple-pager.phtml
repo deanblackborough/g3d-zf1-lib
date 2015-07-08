@@ -1,9 +1,165 @@
 <?php /** @var G3d_View_Codehinting */ $this; ?>
 
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
 <div class="row">
 	<div class="col-md-12 col-xs-12">
 		<h2>Simple pager</h2>
 
-		<?php echo $this->simplePager(5, 15, 50, ''); ?>
+		<p>This view helper generates the HTML for a simple pager, either page 
+			based or item based. The next and previous text can be defined along 
+			with the description, on error a HTML comment is output detailing 
+			the encountered error.</p>
+			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Generates the HTML for a simple pager.
+		* 
+		* Pager includes next and previous links as well as description text between 
+		* the links. All of the text, links, description can be changed to match 
+		* the current context.
+		* 
+		* The pager defaults to an item based text description with the text for the 
+		* buttons being 'previous' and 'next' and the class for the ul being 'pager'
+		* 
+		* The pagination HTML is based purely on the params passed into the view 
+		* helper, it is not tied to a model although you could easily modify it 
+		* to take a model as a param.
+		* 
+		* If there are any issues generating the HTML the view helper will generate a 
+		* HTML comment containing the error reason
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Alter the button text for the next and previous buttons, defaults to 
+		* 'Next' and 'Previous'
+		* 
+		* @param string $next Text for next button
+		* @param string $previous Text for previous button
+		* @return G3d_View_SimplePager
+		*/
+		public function buttonText($next='Next', $previous='Previous')
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Switch to using item based text and optionally override the 
+		* text to use for the description
+		* 
+		* This is the default description setting
+		* 
+		* @param string $record Text string to refer to single record
+		* @param string $records Text string to refer to multiple records
+		* @return G3d_View_SimplePager
+		*/
+		public function itemBasedText($record='Record', $records='Records') 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Switch to page based text, page 1 or page 1 of 10.
+		* @return G3d_View_SimplePager
+		*/
+		public function pageBasedText() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Set the css class for the pager UL, defaults to pager
+		* 
+		* @param string $pager_class CSS class to use for UL
+		* @return G3d_View_SimplePager
+		*/
+		public function pagerUlClass($pager_class) 
+		</pre>
+		
+		<hr />
+		
+		<p><a href="/helper/view/simple-pager-class/" 
+		class="btn btn-default">View entire class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<h4>Default <small>Default example, no changes</small></h4>
+
+		<pre>echo $this->simplePager(5, 15, 50, '#');</pre>
+		<?php echo $this->simplePager(5, 15, 50, '#'); ?>
+		
+		<hr />
+		
+		<h4>Item based <small>Changed text for description</small></h4>
+
+		<pre>echo $this->simplePager(5, 15, 50, '#')->itemBasedText('Item', 'Items');</pre>
+		<?php echo $this->simplePager(5, 15, 50, '#')->itemBasedText('Item', 'Items'); ?>
+		
+		<hr />
+		
+		<h4>Item based <small>Item based from first page, previous link drops</small></h4>
+
+		<pre>echo $this->simplePager(5, 0, 50, '#')->itemBasedText('Item', 'Items');</pre>
+		<?php echo $this->simplePager(5, 0, 50, '#')->itemBasedText('Item', 'Items'); ?>
+		
+		<hr />
+		
+		<h4>Page based <small>Switch to page based description</small></h4>
+
+		<pre>echo $this->simplePager(5, 15, 50, '#')->pageBasedText();</pre>
+		<?php echo $this->simplePager(5, 15, 50, '#')->pageBasedText(); ?>
+		
+		<hr />
+		
+		<h4>Button text <small>Changed the button text</small></h4>
+
+		<pre>echo $this->simplePager(5, 15, 50, '#')->buttonText('Next page', 'Previous page');</pre>
+		<?php echo $this->simplePager(5, 15, 50, '#')->buttonText('Next page', 'Previous page'); ?>
+		
+		<hr />
+		
+		<h4>Last page <small>On last page, previous page link drops</small></h4>
+
+		<pre>echo $this->simplePager(5, 48, 50, '#')->buttonText('Next page', 'Previous page');</pre>
+		<?php echo $this->simplePager(5, 48, 50, '#')->buttonText('Next page', 'Previous page'); ?>
+		
+		<hr />
+		
+		<h4>One page <small>One page of results, item based description</small></h4>
+
+		<pre>echo $this->simplePager(5, 0, 5, '#');</pre>
+		<?php echo $this->simplePager(5, 0, 5, '#'); ?>
+		
+		<hr />
+		
+		<h4>One page <small>One page of results, page based description</small></h4>
+
+		<pre>echo $this->simplePager(5, 0, 5, '#')->pageBasedText();</pre>
+		<?php echo $this->simplePager(5, 0, 5, '#')->pageBasedText(); ?>
 	</div>
 </div>

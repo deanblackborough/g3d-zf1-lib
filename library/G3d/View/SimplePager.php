@@ -58,17 +58,30 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 		return $this;
 	}
 	
-	
+	/**
+	* Switch to using item based text and optionally override the 
+	* text to use for the description
+	* 
+	* This is the default description setting
+	* 
+	* @param string $record Text string to refer to single record
+	* @param string $records Text string to refer to multiple records
+	* @return G3d_View_SimplePager
+	*/
 	public function itemBasedText($record='Record', $records='Records') 
 	{
 		$this->text_style = 1;
 		
-		$this->record = $this->view->escape(trim($record));
-		$this->records = $this->view->escape(trim($records));
+		$this->text_record = $this->view->escape(trim($record));
+		$this->text_records = $this->view->escape(trim($records));
 		
 		return $this;
 	}
 	
+	/**
+	* Switch to page based text, page 1 or page 1 of 10.
+	* @return G3d_View_SimplePager
+	*/
 	public function pageBasedText() 
 	{
 		$this->text_style = 2;
@@ -76,14 +89,28 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 		return $this;
 	}
 	
+	/**
+	* Alter the button text for the next and previous buttons, defaults to 
+	* 'Next' and 'Previous'
+	* 
+	* @param string $next Text for next button
+	* @param string $previous Text for previous button
+	* @return G3d_View_SimplePager
+	*/
 	public function buttonText($next='Next', $previous='Previous')
 	{
-		$this->previous = $this->view->escape(trim($previous));
-		$this->next = $this->view->escape(trim($next));
+		$this->text_previous = $this->view->escape(trim($previous));
+		$this->text_next = $this->view->escape(trim($next));
 		
 		return $this;
 	}
 	
+	/**
+	* Set the css class for the pager UL, defaults to pager
+	* 
+	* @param string $pager_class CSS class to use for UL
+	* @return G3d_View_SimplePager
+	*/
 	public function pagerUlClass($pager_class) 
 	{
 		$this->pager_class = $this->view->escape(trim($pager_class));
@@ -256,4 +283,4 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 	{
 		return $this->render();
 	}
-} 
+}

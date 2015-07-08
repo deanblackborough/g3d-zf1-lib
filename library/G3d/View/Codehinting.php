@@ -53,25 +53,6 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	public function escape($string) { } 
 	
 	/**
-	* Simple pagination view helper, generates next and previous links as well 
-	* as the text between the links. There are two formats for the text between 
-	* the links, either item based or page based. If you are using the item 
-	* setting all the text can be changed from the defaults.
-	* 
-	* @param integer $per_page The number of results per page
-	* @param integer $start The start result for the current page
-	* @param integer $total The total number of results in the entire resultset
-	* @param string $url URL to use for pagination links
-	* @param integer $text_style Text style for the text that appears between 
-	*                            the next and previous links, text can either 
-	*                            be page based or item based, use the constants 
-	*                            to set the style
-	* @return G3d_View_Pagination 
-	*/
-	public function pagination($per_page, $start, $total, $url, 
-	$text_style=G3d_View_Pagination::STYLE_PAGES) { } 
-	
-	/**
 	* Set options
 	* 
 	* @param string $label_text Text for the label

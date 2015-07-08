@@ -33,12 +33,4 @@ class Index_IndexController extends Zend_Controller_Action
 	{
 		
 	}
-	
-	/**
-	* @return void
-	*/
-	public function simplePaginationAction()
-	{
-		
-	}
 }
