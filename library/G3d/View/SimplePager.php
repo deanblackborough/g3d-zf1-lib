@@ -4,11 +4,17 @@
 * 
 * Pager includes next and previous links as well as description text between 
 * the links. All of the text, links, description can be changed to match 
-* the current context. 
+* the current context.
+* 
+* The pager defaults to an item based text description with the text for the 
+* buttons being 'previous' and 'next' and the class for the ul being 'pager'
 * 
 * The pagination HTML is based purely on the params passed into the view 
 * helper, it is not tied to a model although you could easily modify it 
-* to take a model as a param
+* to take a model as a param.
+* 
+* If there are any issues generating the HTML the view helper will generate a 
+* HTML comment containing the error reason
 * 
 * @author Dean Blackborough <dean@g3d-development.com>
 * @copyright G3D Development Limited
@@ -32,53 +38,63 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 	/**
 	* Set the base options
 	* 
+	* @param integer $per_page The number of records to display per page
+	* @param integer $start The start record for the pager
+	* @param integer $total The total number of records in the entire recordset
+	* @param string $url Base url to use for pager links, typiocally the url 
+	* 	for the current page
+	* 
 	* @return G3d_View_SimplePager
 	*/
-
-	/**
-	* Simple pagination view helper, generates next and previous links as well 
-	* as the text between the links. The text between the links can be either 
-	* of the following formats, 'item n-m of o' or 'page n of m'. All the text 
-	* can be changed to whatever suits bests.
-	* 
-	* @param integer $per_page The number of results per page
-	* @param integer $start Start record for paging
-	* @param integer $total Total number of results in the full recordset
-	* @param string $url URL to use for pagination links, typically the url 
-	*                    of the current page
-	* @param integer $text_style Text style for text between links,  
-	*                            1 = item based, 2 = page based
-	* @param string $previous Previous page link text
-	* @param string $next Next page link text
-	* @param string $record Records n of m text, not relevant if page based 
-	*                       text is used
-	* @param string $records Rather than work out plural for text, just set it, 
-	*                        not relevant if page based text is used
-	* @return DLayer_View_Pagination 
-	*/
-	public function bootstrapPagination($per_page, $start, $total, $url, $text_style=1, 
-		$previous='Previous', $next='Next', $record='Record', $records='Records') 
+	public function simplePager($per_page, $start, $total, $url) 
 	{
-		$this->resetParams();
-
+		$this->resetParams(); 
+		
 		$this->per_page = intval($per_page);
 		$this->start = intval($start);
 		$this->total = intval($total);
 		$this->url = $this->view->escape($url);
-		$this->previous = $this->view->escape($previous);
-		$this->next = $this->view->escape($next);
-		$this->record = $this->view->escape($record);
-		$this->records = $this->view->escape($records);
-		if(in_array($text_style, array(1, 2)) == TRUE) {
-			$this->text_style = $text_style;
-		}
-
+		
+		return $this;
+	}
+	
+	
+	public function itemBasedText($record='Record', $records='Records') 
+	{
+		$this->text_style = 1;
+		
+		$this->record = $this->view->escape(trim($record));
+		$this->records = $this->view->escape(trim($records));
+		
+		return $this;
+	}
+	
+	public function pageBasedText() 
+	{
+		$this->text_style = 2;
+		
+		return $this;
+	}
+	
+	public function buttonText($next='Next', $previous='Previous')
+	{
+		$this->previous = $this->view->escape(trim($previous));
+		$this->next = $this->view->escape(trim($next));
+		
+		return $this;
+	}
+	
+	public function pagerUlClass($pager_class) 
+	{
+		$this->pager_class = $this->view->escape(trim($pager_class));
+		
 		return $this;
 	}
 
 	/**
-	* Reset any internal params, need to reset the params in case the view 
-	* helper is called multiple times within the same view.
+	* Reset any internal params, interal properties need to be reset so that 
+	* if the view helper is called within the view script each request is 
+	* unique
 	* 
 	* @return void
 	*/
@@ -88,28 +104,38 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 		$this->start = 0;
 		$this->total = 0;
 		$this->url = NULL;
+		
 		$this->text_style = 1;
+		
+		$this->text_next = 'Next';
+		$this->text_previous = 'Previous';
+		$this->text_record = 'Record';
+		$this->text_records = 'Records';
+		
+		$this->pager_class = 'pager';
 	}
 
 	/**
-	* Generate the pagination html
+	* Generate the HTML for the pager, working method called by __toString()
 	* 
 	* @return string 
 	*/
 	private function render() 
 	{
-		if($this->total > 0) {        
-			$html = '<ul class="pager">' . PHP_EOL;
+		if($this->total > 0) {
+			
+			$html = '<ul class="' . $this->pager_class . '">';
 
 			$html .= $this->previousPage();            
 			$html .= $this->recordsText();            
 			$html .= $this->nextPage();
 
-			$html .= '</ul>' . PHP_EOL;
-
-			return $html;        
+			$html .= '</ul>';
 		} else {
-			return '';
+			
+			$this->errors[] = 'The total number of records is set as Zero';
+			
+			$html = $this->errors();
 		}
 
 		return $html;
@@ -129,11 +155,11 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 				$html .= '<li>';
 				$html .= '<a href="' . $this->url . '/start/';
 				$html .= ($this->start - $this->per_page) . '">';
-				$html .= $this->previous  .'</a></li>' . PHP_EOL;
+				$html .= $this->text_previous  .'</a></li>';
 			} else {
 				$html .= '<li>';
 				$html .= '<a href="' . $this->url . '">';
-				$html .= $this->previous . '</a></li>' . PHP_EOL;
+				$html .= $this->text_previous . '</a></li>';
 			}
 		}
 
@@ -153,7 +179,7 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 			$html .= '<li>'; 
 			$html .= '<a href="' . $this->url . '/start/'; 
 			$html .= ($this->start + $this->per_page) . '">';
-			$html .= $this->next . '</a></li>' . PHP_EOL;
+			$html .= $this->text_next . '</a></li>';
 		}
 
 		return $html;
@@ -181,33 +207,50 @@ class G3d_View_SimplePager extends Zend_View_Helper_Abstract
 					$last = $this->total;
 				}
 
-				$html .= '<li>' . $this->records . ' ' . $first; 
-				$html .= ' - ' . $last . $of_text . '</li>' . PHP_EOL;
+				$html .= '<li> ' . $this->text_records . ' ' . $first; 
+				$html .= ' - ' . $last . $of_text . ' </li>';
 			} else {
-				$html .= '<li>' . $this->record . ' 1 of 1</li>' . 
-				PHP_EOL;
+				$html .= '<li> ' . $this->text_record . ' 1 of 1 </li>';
 			}
 		} else {
 			if($this->total > $this->per_page) {
 				$pages = ceil($this->total/$this->per_page);
 				$page = ceil($this->start/$this->per_page)+1;
 
-				$html .= '<li>Page ' . $page. ' of ' . $pages . 
-				'</li>' . PHP_EOL;
+				$html .= '<li> Page ' . $page. ' of ' . $pages . 
+				' </li>' . PHP_EOL;
 			} else {
-				$html .= '<li>Page 1</li>' . PHP_EOL;
+				$html .= '<li> Page 1 </li>' . PHP_EOL;
 			}
 		}
 
 		return $html;
 	}
+	
+	/**
+	* Generate the error string
+	* 
+	* @return string
+	*/
+	private function errors() 
+	{
+		$html = '<!-- Simple pager view helper';
+		
+		foreach($this->errors as $error) {
+			$html .= ' : '  . $this->view->escape($error);
+		}
+		
+		$html .= ' -->';
+		
+		return $html;
+	}
 
 	/**
-	* The view helpers can be output directly, no need to call and return the 
-	* render method, we define the __toString method so that echo and print 
-	* calls on the object return the html generated by the render method
+	* Define __toString to allow the result to be returned when echo 
+	* and print are called on the object, simply calls the private render 
+	* method
 	* 
-	* @return string Generated html
+	* @return string The generated html
 	*/
 	public function __toString() 
 	{

@@ -36,5 +36,5 @@ class Helper_ViewController extends Zend_Controller_Action
 	public function bootstrapGlyphiconClassAction() { }
 	public function bootstrapNavAction() { }
 	public function bootstrapNavClassAction() { }
-	public function pagerAction() { }
+	public function simplePagerAction() { }
 }

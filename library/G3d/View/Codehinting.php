@@ -98,5 +98,18 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* 	to the corresponding menu item
 	* @return G3d_View_BootstrapNav
 	*/
-	public function bootstrapNav(array $menu_items, $active_url) { }
+	public function bootstrapNav(array $menu_items, $active_url) { } 
+	
+	/**
+	* Set the base options
+	* 
+	* @param integer $per_page The number of records to display per page
+	* @param integer $start The start record for the pager
+	* @param integer $total The total number of records in the entire recordset
+	* @param string $url Base url to use for pager links, typiocally the url 
+	* 	for the current page
+	* 
+	* @return G3d_View_SimplePager
+	*/
+	public function simplePager($per_page, $start, $total, $url) { }
 }
