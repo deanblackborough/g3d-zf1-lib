@@ -92,5 +92,13 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* 
 	* @return G3d_View_SimplePager
 	*/
-	public function simplePager($per_page, $start, $total, $url) { }
+	public function simplePager($per_page, $start, $total, $url) { } 
+	
+	/**
+	* Set options
+	* 
+	* @param string $caption Optional caption for table
+	* @return G3d_View_BootstrapTable
+	*/
+	public function bootstrapTable($caption) { }
 }

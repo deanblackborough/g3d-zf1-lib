@@ -2,6 +2,13 @@
 /**
 * Generates bootstrap valid HTML for a table
 * 
+* This is the very basic version of my html table view helper, it doesn't do 
+* any error checking or support advanced features
+* 
+* The advanced version includes error checking to ensure cells match on each 
+* row, colspan and rowspan support as well as the ability to define the class 
+* for each cell
+* 
 * @author Dean Blackborough <dean@g3d-development.com>
 * @copyright G3D Development Limited
 * @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
@@ -15,6 +22,8 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	*/
 	public $view;
 	
+	private $header;
+	private $rows;
 	private $caption;
 	
 	/**
@@ -42,6 +51,9 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	private function resetParams() 
 	{
 		$this->caption = '';
+		
+		$this->header = array();
+		$this->rows = array();
 	}
 	
 	/**
@@ -51,7 +63,86 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	*/
 	private function render() 
 	{
-		return '';
+		$html = '<table class="table">';
+		
+		if(strlen($this->caption) > 0) {
+			$html .= '<caption>' . $this->view->escape($this->caption) . 
+				'</caption>';
+		}
+		
+		$html .= $this->headerRowHtml();
+		$html .= $this->rowsHtml();
+		
+		$html .= '</table>';
+		
+		return $html;
+	}
+	
+	/**
+	* Generate the html for the header row
+	* 
+	* @return string
+	*/
+	private function headerRowHtml() 
+	{
+		$html = '<thead><tr>';
+		
+		foreach($this->header as $data) {
+			$html .= '<th>' . $this->view->escape($data) . '</th>';
+		}
+		
+		$html .= '</tr></thead>';
+		
+		return $html;
+	}
+	
+	/**
+	* Generate the html for the table rows
+	* 
+	* @return string
+	*/
+	private function rowsHtml() 
+	{
+		$html = '';
+		
+		foreach($this->rows as $row) {
+			
+			 $html .= '<tr>';
+			 
+			 foreach($row as $data) {
+				$html .= '<td>' . $this->view->escape($data) . '</td>';
+			 }
+			 
+			 $html .= '</tr>';
+		}
+		
+		return $html;
+	}
+	
+	/**
+	* Define the data array for the header cells
+	* 
+	* @param array $header
+	* @return G3d_View_BootstrapTable
+	*/
+	public function header(array $header) 
+	{
+		$this->header = $header;
+		
+		return $this;
+	}
+	
+	/**
+	* Define the data array for a table row
+	* 
+	* @param array $row
+	* @return G3d_View_BootstrapTable
+	*/
+	public function row(array $row) 
+	{
+		$this->rows[] = $row;
+		
+		return $this;
 	}
 	
 	/**

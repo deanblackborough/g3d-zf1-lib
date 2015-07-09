@@ -17,6 +17,19 @@
 	<div class="col-md-12 col-xs-12">
 		<h2>Table</h2>
 
+		<?php
 		
+		$header = array('#', 'First Name', 'Last Name', 'Username');
+		$row_1 = array('1', 'Mark', 'Otto', '@mdo');
+		$row_2 = array('2', 'Jacob', 'Thornton', '@fat');
+		$row_3 = array('3', 'Larry', 'the Bird', '@twitter');
+		
+		echo $this->bootstrapTable('Optional table caption.')
+			->header($header)
+			->row($row_1)
+			->row($row_2)
+			->row($row_3);
+		
+		 ?>
 	</div>
 </div>
