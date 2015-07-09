@@ -1,0 +1,106 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Crop</h2>
+		
+		<p>This group of classes allow you to crop an image, jpg, png or gif. 
+			The crop rectangle can be defined as well as the 
+			quality/compression and suffix for the new image can be 
+			defined.</p>
+					
+		<h3>Class comment <small>PHPDoc for base constructor</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Set the crop options, set here to allow batch processing by repeatedly 
+		* calling the loadImage and crop methods
+		* 
+		* @param integer $x_position X position of crop selection rectangle
+		* @param integer $y_position Y position of crop selection rectangle
+		* @param integer $width Width of crop selection rectangle
+		* @param integer $height Height of crop selected rectangle
+		* @param integer $quality Quality or compression level for new image if 
+		*                         required by format
+		* @return void|Exception
+		*/
+		public function __construct($x_position, $y_position, $width, $height, 
+		$quality) 
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Crop the selected image
+		* 
+		* Although the suffix for the new image can be defined the path cannot be 
+		* changed, that is outside the scope of this class, it is down to the 
+		* client developer to create directories and then oevrride the save method
+		* 
+		* @param string $suffix Suffix for newly cropped 
+		* @return void|Exception
+		*/
+		public function crop($suffix='-cropped')  
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Load the image, image is validated, source dimensions are fetched and the 
+		* the previouslt defined crop selections are validated against the source 
+		* image
+		* 
+		* @param string $file File name and extension
+		* @param string $path Full path to image
+		* @return void|Exception 
+		*/
+		public function loadImage($file, $path='') 
+		</pre>
+		
+		<hr />
+				
+		<p><a href="/utility/image/crop-class/" 
+		class="btn btn-default">View entire abstract class</a></p>
+		
+		<p><a href="/utility/image/crop-class-png/" 
+		class="btn btn-default">View entire png class</a></p>
+		
+		<p><a href="/utility/image/crop-class-jpg/" 
+		class="btn btn-default">View entire jpg class</a></p>
+		
+		<p><a href="/utility/image/crop-class-gif/" 
+		class="btn btn-default">View entire gif class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+				
+		<h4>Standard crop <small>Crop image to 300 x 300</small></h4>
+		
+		<pre class="brush: php">
+		try {
+			$cropper = new G3d_Image_Crop_Jpeg(100, 100, 300, 300, 100);
+			$cropper->loadImage('test.jpg', 'images/testing/crop/');
+			$cropper->crop('-cropped');
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		</pre>
+		
+		<h3>Working examples coming <small>Hopefully soonish(tm)</h3>
+	</div>
+</div>
