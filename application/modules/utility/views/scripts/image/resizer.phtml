@@ -1,0 +1,144 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Image resizer</h2>
+		
+		<p>This group of classes allow you to resize an image, jpg, png or gif. 
+			The background canvas colour, desired width and height, 
+			quality/compression and suffix for the new image can be defined. 
+			Optionally you can set whether or not the new resized image 
+			maintains the aspect ration of the original image or is stretched to 
+			fit.</p>
+					
+		<h3>Class comment <small>PHPDoc for base constructor</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Set options for resizer, only the options are set here to allow simple 
+		* batch processing, developer can set initial options and then re-use the 
+		* same object by calling loadImage and resize repeatedly
+		* 
+		* @param integer $width Width for the new image
+		* @param integer $height Height for the new image
+		* @param integer $quality Quality or compression level for new image, this 
+		*                         depends on the desired format, the specific 
+		*                         resizer weill document acceptable values
+		* @param array $canvas_color Canvas background color, passed in as an rgb 
+		*                            array
+		* @param boolean $maintain_aspect Maintain aspect ratio of orginal image, 
+		*                                 if set to TRUE padding will be added 
+		*                                 around a best fit resampled image, 
+		*                                 otherwise the image will be stretched to 
+		*                                 fit the canvas
+		* @return void|Exception Params are validated, an exception will be thrown 
+		*                        if params are not valid
+		*/
+		public function __construct($width, $height, $quality, 
+		array $canvas_color=array('r'=>255, 'g'=>255, 'b'=>255), 
+		$maintain_aspect=TRUE) 
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Load the image
+		* 
+		* @param string $file File name and extension
+		* @param string $path Full patch to image
+		* @return void|Exception Throws an exception if the images fails mime type 
+		*                        validation or can't be found 
+		*/
+		public function loadImage($file, $path='') 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Resize, calculate the size for the resized image, the the maintain 
+		* aspect ratio value is set to true a best fit size is calculated and then 
+		* the required x and y spacing is calculated for when the image is copied 
+		* onto the canvas
+		* 
+		* Although the suffix for the new image can be defined the path cannot be 
+		* changed, that is outside the scope of this class, it is down to the 
+		* client developer to create directories and then oevrride the save method
+		* 
+		* @param string $suffix Suffix for newly created image 
+		* @return void|Exception Throws an exception if no suffic is supplied
+		*/
+		public function resize($suffix='-thumb') 
+		</pre>
+		
+		<hr />
+				
+		<p><a href="/helper/view/simple-pager-class/" 
+		class="btn btn-default">View entire abstract class</a></p>
+		
+		<p><a href="/helper/view/simple-pager-class/" 
+		class="btn btn-default">View entire png class</a></p>
+		
+		<p><a href="/helper/view/simple-pager-class/" 
+		class="btn btn-default">View entire jpg class</a></p>
+		
+		<p><a href="/helper/view/simple-pager-class/" 
+		class="btn btn-default">View entire gif class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<h4>Default <small>Default example, no changes</small></h4>
+
+		<pre>echo $this->simplePager(5, 15, 50, '#');</pre>
+		<?php echo $this->simplePager(5, 15, 50, '#'); ?>
+		
+		<hr />
+		
+		<h4>Standard resize <small>Resize and maintain aspect ratio</small></h4>
+		
+		<pre class="brush: php">
+		try {
+			$resizer = new G3d_Image_Resizer_Jpeg(200, 120, 100, 
+			array('r'=>0, 'g'=>0, 'b'=>255));
+			$resizer->loadImage('test.jpg', 'images/testing/resizer/');
+			$resizer->resize('-thumb');
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		</pre>
+		
+		<hr />
+		
+		<h4>Stretch to fit <small>Strecth image to match canvas aspect ratio</small></h4>
+		
+		<pre class="brush: php">
+		try {
+			$resizer = new G3d_Image_Resizer_Jpeg(200, 120, 100, 
+			array('r'=>0, 'g'=>0, 'b'=>255), FALSE);
+			$resizer->loadImage('test.jpg', 'images/testing/resizer/');
+			$resizer->resize('-thumb-stretched');
+		} catch (Exception $e) {
+			$error = $e->getMessage();
+		}
+		</pre>
+		
+		<hr />
+		
+		<h3>Working examples coming <small>Hopefully soonish(tm)</h3>
+	</div>
+</div>

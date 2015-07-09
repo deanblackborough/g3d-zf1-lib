@@ -15,14 +15,14 @@ This sample site requires the Zend framework, at the time of writing 1.12.
 - Bootstrap nav -  Generates the HTML for a Bootstrap nav component.
 - Bootstrap label - Generates the HTML for a Bootstrap label.
 - Bootstrap glyphicon - Generates the HTML for a Bootstrap glyphicon.
-- Simple pagination - Generates next, previous, m of n html based on the params 
-passed into the view helper.
+- Simple pager - Generates the HTML for a simple pager featuring either an 
+item or page based description, all text configurable.
 
 ## Utility classes
 
 - Image resizer: Resize the supplied image allowing the user to define the 
 background canvas color, desired size, quality/compression, image suffix 
-and whether or not resized image maintains the aspect ratio of the original.
+and whether or not resized image maintains the aspect ratio of the source.
 - Image cropper: Crop the supplied image, user define cropping selection 
 and its position from the top left corner of the source image.
 
