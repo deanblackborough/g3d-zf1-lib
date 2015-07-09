@@ -32,4 +32,8 @@ class Utility_ImageController extends Zend_Controller_Action
 	*/
 	public function cropAction() { }
 	public function resizerAction() { }
+	public function resizerClassAction() { }
+	public function resizerClassPngAction() { }
+	public function resizerClassJpgAction() { }
+	public function resizerClassGifAction() { }
 }
