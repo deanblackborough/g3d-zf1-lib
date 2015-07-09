@@ -17,6 +17,8 @@ This sample site requires the Zend framework, at the time of writing 1.12.
 - Bootstrap glyphicon - Generates the HTML for a Bootstrap glyphicon.
 - Simple pager - Generates the HTML for a simple pager featuring either an 
 item or page based description, all text configurable.
+- Bootstrap table - Very simple view helper to assist with generating the 
+HTML for a table.
 
 ## Utility classes
 
