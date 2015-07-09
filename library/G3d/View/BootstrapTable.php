@@ -25,6 +25,7 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	private $header;
 	private $rows;
 	private $caption;
+	private $css;
 	
 	/**
 	* Set options
@@ -54,6 +55,7 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 		
 		$this->header = array();
 		$this->rows = array();
+		$this->css = array();
 	}
 	
 	/**
@@ -63,7 +65,7 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	*/
 	private function render() 
 	{
-		$html = '<table class="table">';
+		$html = '<table class="table ' . implode(' ', $this->css) . '">';
 		
 		if(strlen($this->caption) > 0) {
 			$html .= '<caption>' . $this->view->escape($this->caption) . 
@@ -141,6 +143,54 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	public function row(array $row) 
 	{
 		$this->rows[] = $row;
+		
+		return $this;
+	}
+	
+	/**
+	* Add striped rows to the table to render in a zebra pattern
+	* 
+	* @return G3d_View_BootstrapTable
+	*/
+	public function stripedRows() 
+	{
+		$this->css[] = 'table-striped';
+		
+		return $this;
+	}
+	
+	/**
+	* Add borders to all sides of the table
+	* 
+	* @return G3d_View_BootstrapTable
+	*/
+	public function bordered() 
+	{
+		$this->css[] = 'table-bordered';
+		
+		return $this;
+	}
+	
+	/**
+	* Add a hover effect to each data row
+	* 
+	* @return G3d_View_BootstrapTable
+	*/
+	public function hoverRows() 
+	{
+		$this->css[] = 'table-hover';
+		
+		return $this;
+	}
+	
+	/**
+	* Condensed version of table
+	* 
+	* @return G3d_View_BootstrapTable
+	*/
+	public function condensed() 
+	{
+		$this->css[] = 'table-condensed';
 		
 		return $this;
 	}

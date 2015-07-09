@@ -15,21 +15,204 @@
 
 <div class="row">
 	<div class="col-md-12 col-xs-12">
-		<h2>Table</h2>
-
-		<?php
+		<h2>Bootstrap table</h2>
 		
+		<p>This view helpers allows the quick generatio of Bootstrap based 
+			html tables. This is a very simple version of my table view 
+			helper, it doesn't validate data, support rowspan, colspan or allow 
+			classes to be defined for each row and cell.</p>
+			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Generates bootstrap valid HTML for a table
+		* 
+		* This is the very basic version of my html table view helper, it doesn't do 
+		* any error checking or support advanced features
+		* 
+		* The advanced version includes error checking to ensure cells match on each 
+		* row, colspan and rowspan support as well as the ability to define the class 
+		* for each cell
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Set options
+		* 
+		* @param string $caption Optional caption for table
+		* @return G3d_View_BootstrapTable
+		*/
+		public function bootstrapTable($caption)  
+		</pre>
+		
+		<hr />
+			
+		<pre class="brush: php">
+		/**
+		* Add striped rows to the table to render in a zebra pattern
+		* 
+		* @return G3d_View_BootstrapTable
+		*/
+		public function stripedRows() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Define the data array for a table row
+		* 
+		* @param array $row
+		* @return G3d_View_BootstrapTable
+		*/
+		public function row(array $row)
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Add a hover effect to each data row
+		* 
+		* @return G3d_View_BootstrapTable
+		*/
+		public function hoverRows() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Define the data array for the header cells
+		* 
+		* @param array $header
+		* @return G3d_View_BootstrapTable
+		*/
+		public function header(array $header)
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Condensed version of table
+		* 
+		* @return G3d_View_BootstrapTable
+		*/
+		public function condensed() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Add borders to all sides of the table
+		* 
+		* @return G3d_View_BootstrapTable
+		*/
+		public function bordered() 
+		</pre>
+		
+		<hr />
+		
+		<p><a href="/helper/view/bootstrap-table-class/" 
+		class="btn btn-default">View entire class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Test data for examples
+		*/
 		$header = array('#', 'First Name', 'Last Name', 'Username');
 		$row_1 = array('1', 'Mark', 'Otto', '@mdo');
 		$row_2 = array('2', 'Jacob', 'Thornton', '@fat');
 		$row_3 = array('3', 'Larry', 'the Bird', '@twitter');
+		</pre>
 		
-		echo $this->bootstrapTable('Optional table caption.')
+		<?php 
+		$header = array('#', 'First Name', 'Last Name', 'Username');
+		$row_1 = array('1', 'Mark', 'Otto', '@mdo');
+		$row_2 = array('2', 'Jacob', 'Thornton', '@fat');
+		$row_3 = array('3', 'Larry', 'the Bird', '@twitter');
+		?>
+		
+		<h4>Simple <small>Simple table</small></h4>
+		
+		<pre class="brush: php">
+		echo $this->bootstrapTable('Striped table caption.')
 			->header($header)
 			->row($row_1)
 			->row($row_2)
 			->row($row_3);
+		</pre>
+
+		<?php
+		echo $this->bootstrapTable('Striped table caption.')
+			->header($header)
+			->row($row_1)
+			->row($row_2)
+			->row($row_3);
+		?>
 		
-		 ?>
+		<hr />
+		
+		<h4>Most options <small>Striped, bordered table with hover 
+			rows</small></h4>
+		
+		<pre class="brush: php">
+		echo $this->bootstrapTable('Striped, bordered, hover table caption.')
+			->header($header)
+			->row($row_1)
+			->row($row_2)
+			->row($row_3)
+			->stripedRows()
+			->bordered()
+			->hoverRows();
+		</pre>
+
+		<?php
+		echo $this->bootstrapTable('Striped, bordered, hover table caption.')
+			->header($header)
+			->row($row_1)
+			->row($row_2)
+			->row($row_3)
+			->stripedRows()
+			->bordered()
+			->hoverRows();
+		?>
+		
+		<hr />
+		
+		<h4>Condensed <small>Simple condensed table</small></h4>
+		
+		<pre class="brush: php">
+		echo $this->bootstrapTable('Condensed table caption.')
+			->header($header)
+			->row($row_1)
+			->row($row_2)
+			->row($row_3)
+			->condensed();
+		</pre>
+
+		<?php
+		echo $this->bootstrapTable('Condensed table caption.')
+			->header($header)
+			->row($row_1)
+			->row($row_2)
+			->row($row_3)
+			->condensed();
+		?>
+		
+		<hr />
 	</div>
 </div>
