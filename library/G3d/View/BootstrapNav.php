@@ -31,7 +31,9 @@ class G3d_View_BootstrapNav extends Zend_View_Helper_Abstract
 	* 
 	* @param array $menu_items Array of menu items, each item in the array 
 	* 	should be an array with three fields, name, url and title. Optionally 
-	* 	disabled and child fields can be defined in the mneu array
+	* 	disabled and child fields can be defined in the menu array. 
+	* 	Alternatively the array can be a string, 'separator', this will add a 
+	* 	seperator between menu items
 	* @param string $active_url The active URL, active class will be attached 
 	* 	to the corresponding menu item
 	* @return G3d_View_BootstrapNav
@@ -143,17 +145,30 @@ class G3d_View_BootstrapNav extends Zend_View_Helper_Abstract
 	*/
 	private function validateMenuItemFields($item, $k) 
 	{
-		if(isset($item['name']) == TRUE && 
-			isset($item['title']) == TRUE && 
-			isset($item['url']) == TRUE) {
+		if(is_array($item)) {		
+			if(isset($item['name']) == TRUE && 
+				isset($item['title']) == TRUE && 
+				isset($item['url']) == TRUE) {
+					
+				return TRUE;
+			} else {
+				$this->errors[] = 'The required fields are not valid for 
+					item ' . ($k+1) . ' in your menu array. The required fields 
+					are name, title and url, disabled and children are 
+					optional';
 				
-			return TRUE;
+				return FALSE;
+			}
 		} else {
-			$this->errors[] = 'The required fields are not validate for 
-				item ' . ($k+1) . ' in your menu array, require, name, title 
-				and url';
-			
-			return FALSE;
+			if($item == 'separator') {
+				return TRUE;
+			} else {
+				$this->errors[] = 'The required fields are not validate for 
+					item ' . ($k+1) . ' in your menu array, require, name, title 
+					and url';
+				
+				return FALSE;
+			}
 		}
 	}
 
@@ -212,17 +227,22 @@ class G3d_View_BootstrapNav extends Zend_View_Helper_Abstract
 							if($this->validateMenuItemFields($child, 
 								$n) == TRUE) {
 								
-								$class=NULL;
-								if(isset($child['disabled']) == TRUE) {
-									$class=' class="disabled"';
+								if(is_array($child) == TRUE) {
+									$class=NULL;
+									if(isset($child['disabled']) == TRUE) {
+										$class=' class="disabled"';
+									}
+									
+									$html .= '<li' . $class . '><a href="' . 
+										$this->view->escape($child['url']) . 
+										'" title="' . 
+										$this->view->escape($child['title']) . 
+										'">' . $this->view->escape($child['name']) . 
+										'</a>'; 
+								} else {
+									$html .= '<li role="separator" 
+										class="divider"></li>';
 								}
-								
-								$html .= '<li' . $class . '><a href="' . 
-									$this->view->escape($child['url']) . 
-									'" title="' . 
-									$this->view->escape($child['title']) . 
-									'">' . $this->view->escape($child['name']) . 
-									'</a>'; 
 							}
 						
 						}
