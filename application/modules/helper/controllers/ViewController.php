@@ -40,4 +40,6 @@ class Helper_ViewController extends Zend_Controller_Action
 	public function simplePagerClassAction() { }
 	public function bootstrapTableAction() { }
 	public function bootstrapTableClassAction() { }
+	public function bootstrapBadgeAction() { }
+	public function bootstrapBadgeClassAction() { }
 }

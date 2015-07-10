@@ -100,5 +100,13 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* @param string $caption Optional caption for table
 	* @return G3d_View_BootstrapTable
 	*/
-	public function bootstrapTable($caption) { }
+	public function bootstrapTable($caption) { } 
+	
+	/**
+	* Set options
+	* 
+	* @param string $badge_count Count for the badge
+	* @return G3d_View_BootstrapBadge
+	*/
+	public function bootstrapBadge($badge_count=0) { }
 }

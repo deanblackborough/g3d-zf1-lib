@@ -19,6 +19,7 @@ This sample site requires the Zend framework, at the time of writing 1.12.
 item or page based description, all text configurable.
 - Bootstrap table - Very simple view helper to assist with generating the 
 HTML for a table.
+- Bootstrap badge - Generates the HTML for the Bootstrap badge component.
 
 ## Utility classes
 

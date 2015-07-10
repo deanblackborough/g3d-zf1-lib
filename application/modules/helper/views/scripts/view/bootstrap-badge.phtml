@@ -1,0 +1,71 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Bootstrap badge</h2>
+
+		<p>This view helper generates the HTML for the Bootstrap badge 
+			component.</p>
+			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Generates the bootstrap badge html.
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		public function bootstrapBadge($badge_count=0)
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Set options
+		* 
+		* @param string $badge_count Count for the badge
+		* @return G3d_View_BootstrapBadge
+		*/
+		public function bootstrapBadge($badge_count=0)
+		</pre>
+		
+		<hr />
+		
+		<p><a href="/helper/view/bootstrap-badge-class/" 
+		class="btn btn-default">View entire class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<h4>Badge <small>Badge inside link and button</small></h4>
+
+		<pre>echo $this->bootstrapBadge(42);</pre>
+		
+		<hr />
+		
+		<a href="#">Inbox <?php echo $this->bootstrapBadge(42); ?></a>
+		
+		<hr />
+		
+		<button class="btn btn-primary" type="button">
+			Messages <?php echo $this->bootstrapBadge(4); ?>
+		</button>
+	</div>
+</div>
