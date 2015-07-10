@@ -72,9 +72,10 @@
 		* Define the data array for a table row
 		* 
 		* @param array $row
+		* @param string|NULL $class Contextual class for row
 		* @return G3d_View_BootstrapTable
 		*/
-		public function row(array $row)
+		public function row(array $row, $class=NULL) 
 		</pre>
 		
 		<hr />
@@ -198,8 +199,8 @@
 		<pre class="brush: php">
 		echo $this->bootstrapTable('Condensed table caption.')
 			->header($header)
-			->row($row_1)
-			->row($row_2)
+			->row($row_1, 'active')
+			->row($row_2, 'warning')
 			->row($row_3)
 			->condensed();
 		</pre>
@@ -207,8 +208,8 @@
 		<?php
 		echo $this->bootstrapTable('Condensed table caption.')
 			->header($header)
-			->row($row_1)
-			->row($row_2)
+			->row($row_1, 'active')
+			->row($row_2, 'warning')
 			->row($row_3)
 			->condensed();
 		?>

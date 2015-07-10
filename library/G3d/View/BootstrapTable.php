@@ -27,6 +27,9 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	private $caption;
 	private $css;
 	
+	private $classes = array('active', 'success', 'info', 'warning', 
+		'danger');
+	
 	/**
 	* Set options
 	* 
@@ -109,9 +112,15 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 		
 		foreach($this->rows as $row) {
 			
-			 $html .= '<tr>';
+			 $html .= '<tr';
 			 
-			 foreach($row as $data) {
+			 if($row['class'] != NULL) {
+				 $html .= ' class="' . $row['class'] . '"';
+			 }
+			 
+			 $html .= '>';
+			 
+			 foreach($row['data'] as $data) {
 				$html .= '<td>' . $this->view->escape($data) . '</td>';
 			 }
 			 
@@ -138,11 +147,12 @@ class G3d_View_BootstrapTable extends Zend_View_Helper_Abstract
 	* Define the data array for a table row
 	* 
 	* @param array $row
+	* @param string|NULL $class Contextual class for row
 	* @return G3d_View_BootstrapTable
 	*/
-	public function row(array $row) 
+	public function row(array $row, $class=NULL) 
 	{
-		$this->rows[] = $row;
+		$this->rows[] = array('data'=>$row, 'class'=>$class);
 		
 		return $this;
 	}
