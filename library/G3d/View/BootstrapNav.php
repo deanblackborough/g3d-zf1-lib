@@ -206,13 +206,18 @@ class G3d_View_BootstrapNav extends Zend_View_Helper_Abstract
 					}
 						
 					if(array_key_exists('children', $item) == TRUE) {
-						$html .= '<ul class="dropdown-menu"">';
+						$html .= '<ul class="dropdown-menu">';
 						
 						foreach($item['children'] as $n=>$child) {
 							if($this->validateMenuItemFields($child, 
 								$n) == TRUE) {
 								
-								$html .= '<li><a  href="' . 
+								$class=NULL;
+								if(isset($child['disabled']) == TRUE) {
+									$class=' class="disabled"';
+								}
+								
+								$html .= '<li' . $class . '><a href="' . 
 									$this->view->escape($child['url']) . 
 									'" title="' . 
 									$this->view->escape($child['title']) . 
