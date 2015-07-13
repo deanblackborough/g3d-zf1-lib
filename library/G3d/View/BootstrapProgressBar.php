@@ -171,6 +171,18 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	}
 	
 	/**
+	* Animate the progress bar by adding an active class
+	* 
+	* @return G3d_View_BootstrapProgressBar
+	*/
+	public function animate() 
+	{
+		$this->modifier_classes[] = 'active';
+		
+		return $this;
+	}
+	
+	/**
 	* Show the progress percentage within the progress bar
 	* 
 	* @return G3d_View_BootstrapProgressBar
