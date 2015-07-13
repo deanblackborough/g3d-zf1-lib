@@ -1,6 +1,7 @@
 Updates
 ============
 
+- Added progress bar view helper [13/07/2015]
 - Updated nav view helper, now supports separator links in child menu items [10/07/2015]
 - Updated nav view helper, now supports disabled child menu items [10/07/2015]
 - Updated table view helper, row now supports contextual class [10/07/2015]
