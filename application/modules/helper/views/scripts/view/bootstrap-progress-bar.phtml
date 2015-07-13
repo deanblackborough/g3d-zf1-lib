@@ -1,0 +1,27 @@
+<?php /** @var G3d_View_Codehinting */ $this; ?>
+
+<link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
+<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
+
+<style>
+	code {
+		background-color: #FFFFFF;
+	}
+</style>
+<script>
+	 SyntaxHighlighter.all()
+</script>
+
+<div class="row">
+	<div class="col-md-12 col-xs-12">
+		<h2>Bootstrap progress bar</h2>
+
+		<p>This view helper generates the HTML for the Bootstrap progress 
+			bar component, it allows you to provide feedback on the progress 
+			of a workflow or action.</p>
+			
+		<?php echo $this->bootstrapProgressBar(); ?>
+	</div>
+</div>

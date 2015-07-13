@@ -108,5 +108,12 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* @param string $badge_count Count for the badge
 	* @return G3d_View_BootstrapBadge
 	*/
-	public function bootstrapBadge($badge_count=0) { }
+	public function bootstrapBadge($badge_count=0) { } 
+	
+	/**
+	* Set options
+	* 
+	* @return G3d_View_BootstrapBadge
+	*/
+	public function bootstrapProgressBar() { }
 }
