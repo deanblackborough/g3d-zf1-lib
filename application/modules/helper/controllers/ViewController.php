@@ -43,4 +43,5 @@ class Helper_ViewController extends Zend_Controller_Action
 	public function bootstrapBadgeAction() { }
 	public function bootstrapBadgeClassAction() { }
 	public function bootstrapProgressBarAction() { }
+	public function bootstrapProgressBarClassAction() { }
 }

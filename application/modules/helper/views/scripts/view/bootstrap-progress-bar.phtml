@@ -3,7 +3,6 @@
 <link href="http://alexgorbatchev.com/pub/sh/current/styles/shThemeDefault.css" rel="stylesheet" type="text/css" />
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shCore.js"></script>
 <script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushPhp.js"></script>
-<script src="http://alexgorbatchev.com/pub/sh/current/scripts/shBrushXml.js"></script>
 
 <style>
 	code {
@@ -22,14 +21,127 @@
 			bar component, it allows you to provide feedback on the progress 
 			of a workflow or action.</p>
 			
+		<h3>Class comment <small>PHPDoc for class</small></h3>
+		
+		<pre class="brush: php">
+		/**
+		* Generates the HTML for the bootstrap progress bar compnent
+		* 
+		* If there are any issues generating the HTML due to incorrect params the 
+		* view helper will generate a HTML comment containing the error reason
+		* 
+		* @author Dean Blackborough dean@g3d-development.com
+		* @copyright G3D Development Limited
+		* @license https://github.com/deanblackborough/g3d-zf1-lib/blob/master/LICENSE.md
+		*/
+		</pre>
+
+		<h3>Public methods <small>Comments and method signatures for public 
+			methods</small></h3>
+			
+		<pre class="brush: php">
+		/**
+		* Set options
+		* 
+		* @param integer $progress Set the progress percentage, a value between 0 
+		* 	and 100
+		* @return G3d_View_BootstrapProgressBar
+		*/
+		public function bootstrapProgressBar($progress) 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Render the progress bar using one of Bootstraps modifier classes, 
+		* valid options are success, info, warning and danger
+		* 
+		* @param string $modifier_class
+		* @return G3d_View_BootstrapProgressBar
+		*/
+		public function modifierClass($modifier_class) 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Render the progress bar using stripes
+		* 
+		* @return G3d_View_BootstrapProgressBar
+		*/
+		public function striped() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Animate the progress bar by adding an active class
+		* 
+		* @return G3d_View_BootstrapProgressBar
+		*/
+		public function animate() 
+		</pre>
+		
+		<hr />
+		
+		<pre class="brush: php">
+		/**
+		* Show the progress percentage within the progress bar
+		* 
+		* @return G3d_View_BootstrapProgressBar
+		*/
+		public function showLabel()
+		</pre>
+		
+		<hr />
+		
+		<p><a href="/helper/view/bootstrap-progress-bar-class/" 
+		class="btn btn-default">View entire class</a></p>
+
+		<h3>Examples <small>Several examples to show use</small></h3>
+		
+		<h4>Default <small>Plain bar 60%</small></h4>
+
+		<pre>echo $this->bootstrapProgressBar(60);</pre>
 		<?php echo $this->bootstrapProgressBar(60); ?>
-		<?php echo $this->bootstrapProgressBar(25); ?>
-		<?php echo $this->bootstrapProgressBar(33)->showLabel(); ?>
-		<?php echo $this->bootstrapProgressBar(-101)->showLabel(); ?>
-		<?php echo $this->bootstrapProgressBar(70)->modifierClass('warning'); ?>
-		<?php echo $this->bootstrapProgressBar(60)->modifierClass('awarning'); ?>
-		<?php echo $this->bootstrapProgressBar(70)->modifierClass('warning')->showLabel(); ?>
-		<?php echo $this->bootstrapProgressBar(70)->modifierClass('warning')->showLabel()->striped(); ?>
-		<?php echo $this->bootstrapProgressBar(70)->modifierClass('warning')->showLabel()->striped()->animate(); ?>
+		
+		<hr />
+		
+		<h4>Label <small>Simple bar, showing label, 60%</small></h4>
+
+		<pre>echo $this->bootstrapProgressBar(60)
+			->showLabel();</pre>
+		<?php echo $this->bootstrapProgressBar(60)->showLabel(); ?>
+		
+		<hr />
+		
+		<h4>Styled <small>Modifier class and striped option</small></h4>
+
+		<pre>echo $this->bootstrapProgressBar(60)
+			->showLabel()
+			->modifierClass('info')
+			->striped();</pre>
+		<?php echo $this->bootstrapProgressBar(60)->showLabel()->modifierClass('info')->striped(); ?>
+		
+		<hr />
+		
+		<h4>Animated <small>Modifier class and animated bar</small></h4>
+
+		<pre>echo $this->bootstrapProgressBar(60)
+			->showLabel()
+			->modifierClass('danger')
+			->striped()
+			->animate();</pre>
+		<?php echo $this->bootstrapProgressBar(60)->showLabel()->modifierClass('danger')->striped()->animate(); ?>
+		
+		<hr />
+		
+		<h4>Error <small>Supplied percentage invalid and modifier class invalid</small></h4>
+
+		<pre>echo $this->bootstrapProgressBar(-60)->modifierClass('green');</pre>
+		<?php echo $this->escape($this->bootstrapProgressBar(-60)->modifierClass('green')); ?>
 	</div>
 </div>
