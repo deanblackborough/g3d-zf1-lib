@@ -14,15 +14,21 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	* @var G3d_View_Codehinting
 	*/
 	public $view;
+	
+	private $progress;
 		
 	/**
 	* Set options
 	* 
+	* @param integer $progress Set the progress percentage, a value between 0 
+	* 	and 100
 	* @return G3d_View_BootstrapBadge
 	*/
-	public function bootstrapProgressBar() 
+	public function bootstrapProgressBar($progress) 
 	{
 		$this->resetParams();
+		
+		$this->progress = intval($progress);
 		
 		return $this;
 	}
@@ -36,7 +42,7 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	*/
 	private function resetParams() 
 	{
-		
+		$this->progress = 0;
 	}
 	
 	/**
@@ -48,10 +54,10 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	{
 		return '
 		<div class="progress">
-			<div class="progress-bar" role="progressbar" 
-				aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" 
-				style="width: 60%;">
-				<span class="sr-only">60% Complete</span>
+			<div class="progress-bar" role="progressbar" aria-valuenow="' . 
+				$this->progress . '" aria-valuemin="0" aria-valuemax="100" 
+				style="width: ' . $this->progress . '%;">
+				<span class="sr-only">' . $this->progress . '% Complete</span>
 			</div>
 		</div>';
 	}
