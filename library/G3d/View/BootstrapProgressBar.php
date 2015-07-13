@@ -24,8 +24,9 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	private $progress;
 	private $show_label;
 	
-	private $modifier_class;
-	private $modifier_classes = array('success', 'info', 'warning', 'danger');
+	private $modifier_classes;
+	private $valid_modifier_classes = array('success', 'info', 'warning', 
+		'danger');
 		
 	/**
 	* Set options
@@ -58,7 +59,7 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	{
 		$this->progress = 0;
 		$this->show_label = FALSE;
-		$this->modifier_class = NULL;
+		$this->modifier_classes = array();
 		
 		$this->errors = array();
 		$this->render = FALSE;
@@ -110,8 +111,8 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 		if($this->render == TRUE) {
 			$html = '<div class="progress"><div class="progress-bar'; 
 			
-			if($this->modifier_class != NULL) {
-				$html .= ' progress-bar-' . $this->modifier_class;
+			if(count($this->modifier_classes) != 0) {
+				$html .= ' ' . implode(' ', $this->modifier_classes);
 			}
 			
 			$html .= '" role="progressbar" aria-valuenow="' . $this->progress . 
@@ -142,17 +143,29 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	*/
 	public function modifierClass($modifier_class) 
 	{
-		if(in_array($modifier_class, $this->modifier_classes) == TRUE) {
+		if(in_array($modifier_class, $this->valid_modifier_classes) == TRUE) {
 			
-			$this->modifier_class = $modifier_class;
+			$this->modifier_classes[] = 'progress-bar-' . $modifier_class;
 
 		} else {
 			$this->errors[] = 'Supplied modifier class (' . $modifier_class . 
 				') invalid, needs to be one of the following (' . 
-				implode(', ', $this->modifier_classes) . ')';			
+				implode(', ', $this->valid_modifier_classes) . ')';
 			
 			$this->render = FALSE;
 		}
+		
+		return $this;
+	}
+	
+	/**
+	* Render the progress bar using stripes
+	* 
+	* @return G3d_View_BootstrapProgressBar
+	*/
+	public function striped() 
+	{
+		$this->modifier_classes[] = 'progress-bar-striped';
 		
 		return $this;
 	}
