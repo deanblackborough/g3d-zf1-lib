@@ -115,7 +115,7 @@ class G3d_View_Codehinting extends Zend_View_Helper_Abstract
 	* 
 	* @param integer $progress Set the progress percentage, a value between 0 
 	* 	and 100
-	* @return G3d_View_BootstrapBadge
+	* @return G3d_View_BootstrapProgressBar
 	*/
 	public function bootstrapProgressBar($progress) 
 }
