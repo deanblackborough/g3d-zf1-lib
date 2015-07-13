@@ -23,6 +23,9 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	
 	private $progress;
 	private $show_label;
+	
+	private $modifier_class;
+	private $modifier_classes = array('success', 'info', 'warning', 'danger');
 		
 	/**
 	* Set options
@@ -55,6 +58,10 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	{
 		$this->progress = 0;
 		$this->show_label = FALSE;
+		$this->modifier_class = NULL;
+		
+		$this->errors = array();
+		$this->render = FALSE;
 	}
 	
 	/**
@@ -101,11 +108,15 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 	private function render() 
 	{
 		if($this->render == TRUE) {
-			$html = '
-			<div class="progress">
-				<div class="progress-bar" role="progressbar" aria-valuenow="' . 
-					$this->progress . '" aria-valuemin="0" aria-valuemax="100" 
-					style="width: ' . $this->progress . '%;">';
+			$html = '<div class="progress"><div class="progress-bar'; 
+			
+			if($this->modifier_class != NULL) {
+				$html .= ' progress-bar-' . $this->modifier_class;
+			}
+			
+			$html .= '" role="progressbar" aria-valuenow="' . $this->progress . 
+				'" aria-valuemin="0" aria-valuemax="100" style="width: ' . 
+				$this->progress . '%;">';
 					
 			if($this->show_label == FALSE) {
 				$html .= '<span class="sr-only">' . $this->progress . 
@@ -120,6 +131,30 @@ class G3d_View_BootstrapProgressBar extends Zend_View_Helper_Abstract
 		}
 		
 		return $html;
+	}
+	
+	/**
+	* Render the progress bar using one of Bootstraps modifier classes, 
+	* valid options are success, info, warning and danger
+	* 
+	* @param string $modifier_class
+	* @return G3d_View_BootstrapProgressBar
+	*/
+	public function modifierClass($modifier_class) 
+	{
+		if(in_array($modifier_class, $this->modifier_classes) == TRUE) {
+			
+			$this->modifier_class = $modifier_class;
+
+		} else {
+			$this->errors[] = 'Supplied modifier class (' . $modifier_class . 
+				') invalid, needs to be one of the following (' . 
+				implode(', ', $this->modifier_classes) . ')';			
+			
+			$this->render = FALSE;
+		}
+		
+		return $this;
 	}
 	
 	/**
